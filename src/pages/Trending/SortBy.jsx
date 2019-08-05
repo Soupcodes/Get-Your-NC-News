@@ -8,22 +8,17 @@ class SortBy extends Component {
 
   render() {
     return (
-      <form>
+      <form className="sort">
         <label>
           Sort by:
-          <select value={this.state.sort_by} onChange={this.handleChange}>
-            <option value="author" onChange={this.handleChange}>
-              Author
-            </option>
-            <option value="title" onChange={this.handleChange}>
-              Title
-            </option>
-            <option value="Date (asc)" onChange={this.handleChange}>
-              Date posted / asc
-            </option>
-            <option value="Date (desc)" onChange={this.handleChange}>
+          <select onChange={this.handleChange}>
+            <option value="comment_count">Most Commented</option>
+            <option value="author">Author</option>
+            <option value="created_at">Recently Posted</option>
+            <option value="title">Title</option>
+            {/* <option value="Date (desc)" onChange={this.handleChange}>
               Date posted / desc
-            </option>
+            </option> */}
           </select>
         </label>
       </form>
@@ -31,8 +26,13 @@ class SortBy extends Component {
   }
 
   handleChange = e => {
-    console.log(this, "THIS");
-    api.getArticles(this.state).then(() => {});
+    const { value } = e.target;
+    this.setState(currentState => {
+      currentState.sort_by = value;
+      api.getArticles(currentState).then(articles => {
+        this.props.sortArticles(value, articles);
+      });
+    });
   };
 }
 
