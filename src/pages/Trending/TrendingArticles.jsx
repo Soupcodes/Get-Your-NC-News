@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleCard from "../Homepage/ArticleCard";
+import ArticleCard from "../Homepage/ArticleList";
+import SortBy from "./SortBy";
 
 class TrendingArticles extends Component {
   state = {
@@ -23,6 +24,10 @@ class TrendingArticles extends Component {
     console.log("MOUNTING");
     api.getArticles(this.state).then(articles => this.setState({ articles }));
   }
+
+  // updateArticles = sort => {
+  //   this.setState({ articles });
+  // };
 }
 
 export default TrendingArticles;

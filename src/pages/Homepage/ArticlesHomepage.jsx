@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleCard from "./ArticleCard";
+import ArticleList from "./ArticleList";
 
 class ArticlesHomepage extends Component {
   state = {
@@ -15,7 +15,7 @@ class ArticlesHomepage extends Component {
       <p>Loading ......</p>
     ) : (
       <section>
-        <ArticleCard articles={this.state.articles} />
+        <ArticleList articles={this.state.articles} />
       </section>
     );
   }
