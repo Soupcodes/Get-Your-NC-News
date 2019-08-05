@@ -1,13 +1,20 @@
 import React from "react";
 import "./App.css";
+import { Router } from "@reach/router";
+import Navbar from "./pages/Homepage/Components/Navbar";
+import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 
 class App extends React.Component {
-  state = {};
-
   render() {
     return (
       <div className="App">
-        <header className="App-header">NC News</header>
+        <header className="App-header">
+          <Navbar className="nav" />
+        </header>
+
+        <Router>
+          <ArticlesHomepage path="/" />
+        </Router>
       </div>
     );
   }
