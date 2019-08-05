@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
+import "./styles/Order.css";
 
 class OrderBy extends Component {
   state = {
@@ -8,7 +9,7 @@ class OrderBy extends Component {
 
   render() {
     return (
-      <form className="order">
+      <form>
         <label>
           <select onChange={this.handleChange}>
             <option value="desc">Descending</option>

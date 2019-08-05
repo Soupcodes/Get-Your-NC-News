@@ -8,7 +8,7 @@ class SortBy extends Component {
 
   render() {
     return (
-      <form className="sort">
+      <form>
         <label>
           Sort by:
           <select onChange={this.handleChange}>

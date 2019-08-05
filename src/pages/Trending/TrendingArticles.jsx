@@ -3,6 +3,7 @@ import * as api from "../../api";
 import ArticleCard from "../Homepage/ArticleList";
 import SortBy from "./SortBy";
 import OrderBy from "./OrderBy";
+import "./styles/TrendingArticles.css";
 
 class TrendingArticles extends Component {
   state = {
@@ -17,11 +18,14 @@ class TrendingArticles extends Component {
       <p>Loading......</p>
     ) : (
       <section>
-        <SortBy sortArticles={this.sortArticles} />
-        <OrderBy
-          orderArticles={this.orderArticles}
-          sort_by={this.state.sort_by}
-        />
+        <div className="forms">
+          <SortBy sortArticles={this.sortArticles} className="sort" />
+          <OrderBy
+            orderArticles={this.orderArticles}
+            sort_by={this.state.sort_by}
+            className="order"
+          />
+        </div>
         <ArticleCard articles={this.state.articles} />
       </section>
     );
