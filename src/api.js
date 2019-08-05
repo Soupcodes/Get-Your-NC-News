@@ -17,8 +17,7 @@ export const getUsers = async query => {
 export const getTopics = async query => {
   const { data } = await request.get("/topics");
   const topics = data.topics.map(topic => {
-    const capitalised = `${topic.slug[0].toUpperCase()}${topic.slug.slice(1)}`;
-    return { slug: capitalised, ...data.topics };
+    return topic;
   });
   return topics;
 };
