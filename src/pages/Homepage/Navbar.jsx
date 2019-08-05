@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import "../styles/Navbar.css";
+import "./styles/Navbar.css";
+import UserList from "./UserList";
 
 class Navbar extends Component {
   state = {};
@@ -9,14 +10,11 @@ class Navbar extends Component {
     return (
       <nav>
         {/* <img src="https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png"/> */}
-        <Link to="/">Latest</Link>
-        <Link to="/articles?sort_by=votes">Top</Link>
+        {/* <Link to="/">Logo</Link> */}
+        <Link to="/articles/latest">Latest</Link>
+        <Link to="/articles/trending">Top</Link>
         <Link to="/topics">Topics</Link>
-        <form>
-          <label>
-            User: <input type="text" className="login" />
-          </label>
-        </form>
+        <UserList user={this.props.user} />
       </nav>
     );
   }

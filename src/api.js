@@ -9,6 +9,6 @@ export const getArticles = async query => {
 };
 
 export const getUsers = async query => {
-  const { data } = await request.get("/articles");
-  return data.articles;
+  const { data } = await request.get(`/users/${query}`);
+  return data.user;
 };

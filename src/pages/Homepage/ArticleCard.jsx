@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/ArticleCard.module.css";
+import "./styles/ArticleCard.module.css";
 
 const ArticleCard = ({ articles }) => {
   // console.log(articles.created_at);
