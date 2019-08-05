@@ -4,7 +4,8 @@ const request = axios.create({
 });
 
 export const getArticles = async query => {
-  const { data } = await request.get("/articles");
+  console.log(query, "IN API QUERY");
+  const { data } = await request.get("/articles", { params: query });
   return data.articles;
 };
 

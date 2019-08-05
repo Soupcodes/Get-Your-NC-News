@@ -11,8 +11,10 @@ class Navbar extends Component {
       <nav>
         {/* <img src="https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png"/> */}
         {/* <Link to="/">Logo</Link> */}
-        <Link to="/articles/latest">Latest</Link>
-        <Link to="/articles/trending">Top</Link>
+        <Link to="/articles">Latest</Link>
+        <Link to="/articles/trending">
+          Top [Comments atm, need to add votes]
+        </Link>
         <Link to="/topics">Topics</Link>
         <UserList user={this.props.user} />
       </nav>
