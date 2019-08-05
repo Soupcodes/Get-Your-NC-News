@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import "./styles/Navbar.css";
+import styles from "./styles/Navbar.module.css";
 import UserList from "./UserList";
 
 class Navbar extends Component {
