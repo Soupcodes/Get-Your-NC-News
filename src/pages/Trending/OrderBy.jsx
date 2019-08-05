@@ -26,7 +26,7 @@ class OrderBy extends Component {
     this.setState(currentState => {
       currentState.order = value;
       api.getArticles({ order: value, sort_by }).then(articles => {
-        this.props.orderArticles(value, articles);
+        this.props.orderArticles(articles);
       });
     });
   };

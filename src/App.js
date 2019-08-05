@@ -4,6 +4,8 @@ import { Router } from "@reach/router";
 import Navbar from "./pages/Homepage/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
+import SortArticles from "./pages/SortArticles/SortArticles";
+import TopicsList from "./pages/TopicsList/TopicsList";
 
 class App extends React.Component {
   state = {
@@ -19,8 +21,10 @@ class App extends React.Component {
 
         <Router>
           <ArticlesHomepage path="/" />
-          <ArticlesHomepage path="/articles" />
-          <TrendingArticles path="/articles/trending" />
+          <TrendingArticles path="/trending" />
+          <SortArticles path="/sort_articles_by/:sort_by" />
+          <TopicsList path="topics" />
+          <TopicsList path="topics/:topic" />
           {/* <UserProfile /> */}
         </Router>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
+import { navigate } from "@reach/router";
 
 class SortBy extends Component {
   state = {
@@ -7,6 +8,10 @@ class SortBy extends Component {
   };
 
   render() {
+    if (this.state.sort_by) {
+      navigate(`/sort_articles_by/${this.state.sort_by}`);
+    }
+
     return (
       <form>
         <label>
@@ -16,6 +21,7 @@ class SortBy extends Component {
             <option value="author">Author</option>
             <option value="created_at">Recently Posted</option>
             <option value="title">Title</option>
+            <option value="votes">Votes</option>
             {/* <option value="Date (desc)" onChange={this.handleChange}>
               Date posted / desc
             </option> */}
@@ -30,7 +36,7 @@ class SortBy extends Component {
     this.setState(currentState => {
       currentState.sort_by = value;
       api.getArticles(currentState).then(articles => {
-        this.props.sortArticles(value, articles);
+        this.props.sortArticles(articles);
       });
     });
   };

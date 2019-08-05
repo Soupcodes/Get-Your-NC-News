@@ -10,7 +10,7 @@ class UserList extends Component {
   render() {
     return (
       this.state.userInfo && (
-        <Link to="/user/profile">{this.state.userInfo.username}</Link>
+        <Link to="/user/profile">User: {this.state.userInfo.username}</Link>
       )
     );
   }

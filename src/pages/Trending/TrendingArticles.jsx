@@ -36,12 +36,12 @@ class TrendingArticles extends Component {
     api.getArticles(this.state).then(articles => this.setState({ articles }));
   }
 
-  sortArticles = (sort_by, articles) => {
-    this.setState({ sort_by, articles });
+  sortArticles = articles => {
+    this.setState({ articles });
   };
 
-  orderArticles = (order, articles) => {
-    this.setState({ order, articles });
+  orderArticles = articles => {
+    this.setState({ articles });
   };
 }
 

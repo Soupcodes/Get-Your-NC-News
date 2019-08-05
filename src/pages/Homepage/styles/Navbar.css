@@ -5,13 +5,15 @@ nav {
   height: 50px;
   background: rgba(231, 30, 30, 0.541);
   margin: 0;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 a {
   text-decoration: none;
   padding: 10px;
+  color: black;
 }
 
-.login {
+a:hover {
+  color: white;
 }
