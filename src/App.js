@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Router } from "@reach/router";
-import Navbar from "./pages/Homepage/Navbar";
+import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
 import SortArticles from "./pages/SortArticles/SortArticles";
@@ -25,10 +25,7 @@ class App extends React.Component {
           <ArticlesHomepage path="/" />
           <TrendingArticles path="/trending" />
           <SortArticles path="/sort_articles_by/:sort_by" />
-          <ArticleById
-            path="/articles/:article_id"
-            user={this.state.user}
-          />
+          <ArticleById path="/articles/:article_id" user={this.state.user} />
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
           <UserProfile path="/user/:username" />

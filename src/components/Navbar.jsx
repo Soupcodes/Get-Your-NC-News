@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import styles from "./styles/Navbar.module.css";
+import styles from "../pages/Homepage/styles/Navbar.module.css";
 import User from "./User";
 
 class Navbar extends Component {

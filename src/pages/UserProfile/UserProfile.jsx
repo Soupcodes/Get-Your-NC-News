@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import LoadingSpinner from "../Assets/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 class UserProfile extends Component {
   state = {

@@ -5,7 +5,7 @@ import styles from "./styles/TopicsList.module.css";
 import SortBy from "../TopicsList/SortBy";
 import OrderBy from "../TopicsList/OrderBy";
 import Topic from "./Topic";
-import LoadingSpinner from "../Assets/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 class TopicsList extends Component {
   state = {

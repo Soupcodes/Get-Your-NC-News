@@ -4,7 +4,7 @@ import ArticleList from "../Homepage/ArticleList";
 import SortBy from "./SortBy";
 import OrderBy from "./OrderBy";
 import "./styles/TrendingArticles.css";
-import LoadingSpinner from "../Assets/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 class TrendingArticles extends Component {
   state = {
