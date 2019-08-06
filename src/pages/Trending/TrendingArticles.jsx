@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleCard from "../Homepage/ArticleList";
+import ArticleList from "../Homepage/ArticleList";
 import SortBy from "./SortBy";
 import OrderBy from "./OrderBy";
 import "./styles/TrendingArticles.css";
@@ -28,7 +28,7 @@ class TrendingArticles extends Component {
             className="order"
           />
         </div>
-        <ArticleCard articles={articles} />
+        <ArticleList articles={articles} />
       </section>
     );
   }

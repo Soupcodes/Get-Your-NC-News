@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import styles from "./styles/Navbar.module.css";
-import UserList from "./UserList";
+import User from "./User";
 
 class Navbar extends Component {
   state = {};
@@ -14,7 +14,7 @@ class Navbar extends Component {
         <Link to="/">Latest</Link>
         <Link to="/trending">Top [Comments atm, need to add votes]</Link>
         <Link to="/topics">Topics</Link>
-        <UserList user={this.props.user} />
+        <User user={this.props.user} />
       </nav>
     );
   }

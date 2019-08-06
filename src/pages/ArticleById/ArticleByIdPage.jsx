@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import LoadingSpinner from "../Assets/LoadingSpinner";
 import SingleArticle from "./SingleArticle";
+import CommentsByArticleId from "./CommentsByArticleId";
 
 class ArticleById extends Component {
   state = {
@@ -11,11 +12,17 @@ class ArticleById extends Component {
 
   render() {
     const { article, isLoading } = this.state;
-    return isLoading ? <LoadingSpinner /> : <SingleArticle article={article} />;
+    return isLoading ? (
+      <LoadingSpinner />
+    ) : (
+      <>
+        <SingleArticle article={article} />
+        <CommentsByArticleId id={article.article_id} />
+      </>
+    );
   }
 
   componentDidMount() {
-    console.log(this.props, "PROP ID");
     const { article_id } = this.props;
     api
       .getArticleById(article_id)
