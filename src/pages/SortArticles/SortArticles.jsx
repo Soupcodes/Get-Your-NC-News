@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import ArticleList from "../Homepage/ArticleList";
-import SortBy from "../Trending/SortBy";
-import OrderBy from "../Trending/OrderBy";
+import SortBy from "../SortArticles/SortBy";
+import OrderBy from "../SortArticles/OrderBy";
 
 class SortArticles extends Component {
   state = {
     articles: null,
     isLoading: true,
-    sort_by: ""
+    sort_by: "",
+    order: "desc"
   };
 
   render() {
