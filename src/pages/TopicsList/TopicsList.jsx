@@ -17,7 +17,7 @@ class TopicsList extends Component {
   };
 
   render() {
-    const { sort_by, topic, order, articles } = this.state;
+    const { sort_by, topic, order, articles, topics } = this.state;
 
     //Renders loading screen when fetching topicsList
 
@@ -27,9 +27,9 @@ class TopicsList extends Component {
       //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
       <section>
         <nav className={styles.subnav}>
-          <Topic topics={this.state.topics} />
+          <Topic topics={topics} />
         </nav>
-        {this.state.articles && (
+        {articles && (
           <>
             <div className="forms">
               <SortBy
@@ -52,38 +52,27 @@ class TopicsList extends Component {
 
   //mounts a blank page with topics to select from initially
   componentDidMount() {
-    console.log("MOUNTING");
-    if (this.props.topic) {
+    const { topic } = this.props;
+
+    if (topic) {
       this.setState(currentState => {
-        currentState.topic = this.props.topic;
-        api.getArticles(currentState).then(articles =>
-          this.setState(currentState => {
-            api.getTopics().then(topics => {
-              this.setState({ topics, articles, isLoading: false });
-            });
-          })
-        );
+        currentState.topic = topic;
+        api
+          .getArticles(currentState)
+          .then(articles => this.fetchTopics({ articles }));
       });
     } else {
-      api.getTopics().then(topics =>
-        this.setState(currentState => {
-          // const topic = this.props.topic ? this.props.topic : "";
-          return { topics, isLoading: false };
-        })
-      );
+      this.fetchTopics();
     }
   }
 
   //updates the page view based on topic selected
   componentDidUpdate(prevProps) {
     const { topic } = this.props;
-    console.log(topic, "UPDATING");
     if (prevProps.topic !== topic) {
       this.setState(currentState => {
         currentState.topic = topic;
-        api
-          .getArticles(currentState)
-          .then(articles => this.setState({ articles }));
+        this.fetchArticles();
       });
     }
   }
@@ -94,6 +83,18 @@ class TopicsList extends Component {
 
   orderArticles = (articles, order, sort_by) => {
     this.setState({ articles, order, sort_by });
+  };
+
+  fetchArticles = () => {
+    return api
+      .getArticles(this.state)
+      .then(articles => this.setState({ articles }));
+  };
+
+  fetchTopics = articles => {
+    return api
+      .getTopics()
+      .then(topics => this.setState({ topics, isLoading: false, ...articles }));
   };
 }
 

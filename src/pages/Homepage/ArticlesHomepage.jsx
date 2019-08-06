@@ -5,28 +5,30 @@ import ArticleList from "./ArticleList";
 class ArticlesHomepage extends Component {
   state = {
     articles: null,
-    isLoading: true,
-    sort_by: ""
+    isLoading: true
+    // sort_by: ""
   };
 
   render() {
-    console.log("RENDERING");
-    return this.state.isLoading ? (
+    const { isLoading, articles } = this.state;
+    return isLoading ? (
       <p>Loading ......</p>
     ) : (
       <section>
-        <ArticleList articles={this.state.articles} />
+        <ArticleList articles={articles} />
       </section>
     );
   }
 
   componentDidMount() {
-    console.log("MOUNTING");
+    this.fetchArticles();
+  }
+
+  fetchArticles = () => {
     api
       .getArticles()
       .then(articles => this.setState({ articles, isLoading: false }));
-  }
-
+  };
   // componentDidUpdate(prevProps) {
   //   console.log(this.props);
   //   if (prevProps.path !== this.props.path) {

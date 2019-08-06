@@ -13,32 +13,33 @@ class SortArticles extends Component {
   };
 
   render() {
-    return this.state.isLoading ? (
+    const { isLoading, sort_by, articles } = this.state;
+    return isLoading ? (
       <p>Loading ......</p>
     ) : (
       <section>
         <div className="forms">
           <SortBy sortArticles={this.sortArticles} />
-          <OrderBy
-            orderArticles={this.orderArticles}
-            sort_by={this.state.sort_by}
-          />
+          <OrderBy orderArticles={this.orderArticles} sort_by={sort_by} />
         </div>
-        <ArticleList articles={this.state.articles} />
+        <ArticleList articles={articles} />
       </section>
     );
   }
 
   componentDidMount() {
-    console.log("MOUNTING");
-    console.log(this.props.sort_by, "SORTING BY THIS IN SORTARTICLES");
+    const { sort_by } = this.props;
     this.setState(currentState => {
-      currentState.sort_by = this.props.sort_by;
-      api
-        .getArticles(currentState)
-        .then(articles => this.setState({ articles, isLoading: false }));
+      currentState.sort_by = sort_by;
+      this.fetchArticles();
     });
   }
+
+  fetchArticles = () => {
+    return api
+      .getArticles(this.state)
+      .then(articles => this.setState({ articles, isLoading: false }));
+  };
 
   sortArticles = articles => {
     this.setState({ articles });

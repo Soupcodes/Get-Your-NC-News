@@ -8,7 +8,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav>
+      <nav className={styles.nav}>
         {/* <img src="https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png"/> */}
         {/* <Link to="/">Logo</Link> */}
         <Link to="/">Latest</Link>

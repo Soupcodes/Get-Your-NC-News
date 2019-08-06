@@ -15,7 +15,7 @@ class UserProfile extends Component {
         <li>
           <h1>LEFT ALIGN</h1>
           <p>{this.state.user.name}</p>
-          <img src={this.state.user.avatar_url} alt="Profile-image" />
+          <img src={this.state.user.avatar_url} alt="profile-pic" />
           <p>{this.state.user.username}</p>
         </li>
       </ul>
@@ -23,11 +23,15 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
+    this.fetchUser();
+  }
+
+  fetchUser = () => {
     const { username } = this.props;
     api
-      .getUsers(username)
+      .getUser(username)
       .then(user => this.setState({ user, isLoading: false }));
-  }
+  };
 }
 
 export default UserProfile;

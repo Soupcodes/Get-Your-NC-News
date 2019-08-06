@@ -9,26 +9,26 @@ class ArticleById extends Component {
   };
 
   render() {
-    return this.state.isLoading ? (
+    const { article, isLoading } = this.state;
+    return isLoading ? (
       <p>Loading......</p>
     ) : (
       <ul>
         <li>
           <h1>
-            <Link to={`/topics/${this.state.article.topic}`}>
-              {this.state.article.topic}
-            </Link>
+            <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
           </h1>
         </li>
         <li>
-          <h2>{this.state.article.title}</h2>
-          <p>{this.state.article.body}</p>
-          <p>Written by: {this.state.article.author}</p>
-          <p>Posted: {this.state.article.created_at}</p>
+          <h2>{article.title}</h2>
+          <p>{article.body}</p>
+          <span>Author:</span>
+          <Link to={`/user/${article.author}`}>{article.author}</Link>
+
+          <p>Posted: {article.created_at}</p>
           <p>
-            Comments: {this.state.article.comment_count} ---------NEED
-            SPACING----------
-            <span>Votes: {this.state.article.votes}</span>
+            Comments: {article.comment_count} ---------NEED SPACING----------
+            <span>Votes: {article.votes}</span>
           </p>
         </li>
       </ul>
