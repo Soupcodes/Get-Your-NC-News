@@ -6,6 +6,8 @@ import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
 import SortArticles from "./pages/SortArticles/SortArticles";
 import TopicsList from "./pages/TopicsList/TopicsList";
+import UserProfile from "./pages/UserProfile/UserProfile";
+import ArticleById from "./pages/ArticleById/ArticleById";
 
 class App extends React.Component {
   state = {
@@ -23,9 +25,10 @@ class App extends React.Component {
           <ArticlesHomepage path="/" />
           <TrendingArticles path="/trending" />
           <SortArticles path="/sort_articles_by/:sort_by" />
+          <ArticleById path="/articles/:article_id" />
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
-          {/* <UserProfile /> */}
+          <UserProfile path="/user/:username" />
         </Router>
       </div>
     );

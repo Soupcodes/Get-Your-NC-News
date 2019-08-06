@@ -17,7 +17,7 @@ class TopicsList extends Component {
   };
 
   render() {
-    const { sort_by, topic, order } = this.state;
+    const { sort_by, topic, order, articles } = this.state;
 
     //Renders loading screen when fetching topicsList
 
@@ -31,17 +31,19 @@ class TopicsList extends Component {
         </nav>
         {this.state.articles && (
           <>
-            <SortBy
-              sortArticles={this.sortArticles}
-              topic={this.state.topic}
-              order={order}
-            />
-            <OrderBy
-              orderArticles={this.orderArticles}
-              topic={topic}
-              sort_by={sort_by}
-            />
-            <ArticleList articles={this.state.articles} />
+            <div className="forms">
+              <SortBy
+                sortArticles={this.sortArticles}
+                topic={topic}
+                order={order}
+              />
+              <OrderBy
+                orderArticles={this.orderArticles}
+                topic={topic}
+                sort_by={sort_by}
+              />
+            </div>
+            <ArticleList articles={articles} />
           </>
         )}
       </section>
@@ -51,12 +53,31 @@ class TopicsList extends Component {
   //mounts a blank page with topics to select from initially
   componentDidMount() {
     console.log("MOUNTING");
-    api.getTopics().then(topics => this.setState({ topics, isLoading: false }));
+    if (this.props.topic) {
+      this.setState(currentState => {
+        currentState.topic = this.props.topic;
+        api.getArticles(currentState).then(articles =>
+          this.setState(currentState => {
+            api.getTopics().then(topics => {
+              this.setState({ topics, articles, isLoading: false });
+            });
+          })
+        );
+      });
+    } else {
+      api.getTopics().then(topics =>
+        this.setState(currentState => {
+          // const topic = this.props.topic ? this.props.topic : "";
+          return { topics, isLoading: false };
+        })
+      );
+    }
   }
 
   //updates the page view based on topic selected
   componentDidUpdate(prevProps) {
     const { topic } = this.props;
+    console.log(topic, "UPDATING");
     if (prevProps.topic !== topic) {
       this.setState(currentState => {
         currentState.topic = topic;

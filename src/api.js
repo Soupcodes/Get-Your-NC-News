@@ -9,15 +9,26 @@ export const getArticles = async query => {
   return data.articles;
 };
 
-export const getUsers = async query => {
-  const { data } = await request.get(`/users/${query}`);
+export const getArticleById = async id => {
+  const { data } = await request.get(`/articles/${id}`);
+  return data.article;
+};
+
+export const getUsers = async username => {
+  const { data } = await request.get(`/users/${username}`);
   return data.user;
 };
 
 export const getTopics = async query => {
   const { data } = await request.get("/topics");
   const topics = data.topics.map(topic => {
+    // console.log(query, "QUERYING TOPIC");
+    // if (query === topic) {
+    //   console.log(topic.slug, "in map");
+    //   return topic;
+    // } else {
     return topic;
+    // }
   });
   return topics;
 };

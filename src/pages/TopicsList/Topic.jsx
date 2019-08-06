@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 
 const Topic = ({ topics }) => {
+  console.log(topics);
   return topics.map(topic => (
     <section key={topic.slug}>
       <Link
