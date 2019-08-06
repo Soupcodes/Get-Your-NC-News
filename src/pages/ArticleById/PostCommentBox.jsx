@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class PostCommentBox extends Component {
   state = {
-    comment: ""
+    body: ""
   };
 
   render() {
@@ -10,8 +10,8 @@ class PostCommentBox extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           <input
-            // type="text"
-            value={this.state.comment}
+            type="text"
+            value={this.state.body}
             onChange={this.handleChange}
           />
         </label>
@@ -21,13 +21,15 @@ class PostCommentBox extends Component {
   }
 
   handleChange = e => {
-    e.preventDefault();
-    console.log(this.state.comment);
-    this.setState({ input: this.state.comment });
+    this.setState({ body: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
+    const { postNewComment, username, id } = this.props;
+    postNewComment(id, { username, ...this.state }).then(() => {
+      this.setState({ body: "" });
+    });
   };
 }
 

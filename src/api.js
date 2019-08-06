@@ -30,3 +30,9 @@ export const getCommentsByArticleId = async id => {
   const { data } = await request.get(`/articles/${id}/comments`);
   return data.comments;
 };
+
+export const postCommentToArticle = async (id, comment) => {
+  const { data } = await request.post(`/articles/${id}/comments`, comment);
+  console.log(data, "Your post is here");
+  return data.comment;
+};

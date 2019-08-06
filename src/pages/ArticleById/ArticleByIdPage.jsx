@@ -12,12 +12,13 @@ class ArticleById extends Component {
 
   render() {
     const { article, isLoading } = this.state;
+    const { user } = this.props;
     return isLoading ? (
       <LoadingSpinner />
     ) : (
       <>
         <SingleArticle article={article} />
-        <CommentsByArticleId id={article.article_id} />
+        <CommentsByArticleId id={article.article_id} username={user} />
       </>
     );
   }

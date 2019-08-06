@@ -12,11 +12,16 @@ class CommentsByArticleId extends Component {
 
   render() {
     const { comments, isLoading } = this.state;
+    const { username, id } = this.props;
     return isLoading ? (
       <LoadingSpinner />
     ) : (
       <>
-        <PostCommentBox />
+        <PostCommentBox
+          postNewComment={this.postNewComment}
+          username={username}
+          id={id}
+        />
         <CommentList comments={comments} />
       </>
     );
@@ -30,6 +35,14 @@ class CommentsByArticleId extends Component {
     return api
       .getCommentsByArticleId(id)
       .then(comments => this.setState({ comments, isLoading: false }));
+  };
+
+  postNewComment = (id, comment) => {
+    return api.postCommentToArticle(id, comment).then(comment => {
+      this.setState(currentState => {
+        return { comments: [comment, ...currentState.comments] };
+      });
+    });
   };
 }
 

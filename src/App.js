@@ -25,7 +25,10 @@ class App extends React.Component {
           <ArticlesHomepage path="/" />
           <TrendingArticles path="/trending" />
           <SortArticles path="/sort_articles_by/:sort_by" />
-          <ArticleById path="/articles/:article_id" />
+          <ArticleById
+            path="/articles/:article_id"
+            user={this.state.user}
+          />
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
           <UserProfile path="/user/:username" />

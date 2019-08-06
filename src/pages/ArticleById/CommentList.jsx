@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 
 const CommentList = ({ comments }) => {
+  console.log(comments, "array");
   return comments.map(comment => (
     <ul key={comment.comment_id}>
       <li>
