@@ -36,3 +36,9 @@ export const postCommentToArticle = async (id, comment) => {
   console.log(data, "Your post is here");
   return data.comment;
 };
+
+export const deleteCommentById = async comment_id => {
+  console.log(comment_id, "deleting from back-end");
+  const { status } = await request.delete(`/comments/${comment_id}`);
+  return status;
+};

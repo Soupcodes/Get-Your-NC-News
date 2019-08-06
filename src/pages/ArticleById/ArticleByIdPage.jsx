@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import LoadingSpinner from "../Assets/LoadingSpinner";
-import SingleArticle from "./SingleArticle";
-import CommentsByArticleId from "./CommentsByArticleId";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import SingleArticleView from "./SingleArticleView";
+import CommentsByArticleId from "./CommentsbyId/CommentsByArticleId";
 
 class ArticleById extends Component {
   state = {
@@ -12,13 +12,13 @@ class ArticleById extends Component {
 
   render() {
     const { article, isLoading } = this.state;
-    const { user } = this.props;
+    const { user, article_id } = this.props;
     return isLoading ? (
       <LoadingSpinner />
     ) : (
       <>
-        <SingleArticle article={article} />
-        <CommentsByArticleId id={article.article_id} username={user} />
+        <SingleArticleView article={article} />
+        <CommentsByArticleId id={article_id} username={user} />
       </>
     );
   }
