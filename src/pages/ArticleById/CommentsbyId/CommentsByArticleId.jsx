@@ -52,8 +52,7 @@ class CommentsByArticleId extends Component {
   };
 
   deleteComment = comment_id => {
-    console.log("delete clicked");
-    const { id } = this.props;
+    // console.log("delete clicked");
     api.deleteCommentById(comment_id).then(deleted => {
       if (deleted === 204) {
         this.componentDidMount();

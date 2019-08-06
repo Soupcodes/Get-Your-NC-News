@@ -8,6 +8,7 @@ import SortArticles from "./pages/SortArticles/SortArticles";
 import TopicsList from "./pages/TopicsList/TopicsList";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ArticleById from "./pages/ArticleById/ArticleByIdPage";
+import DefaultErrorPage from "./components/DefaultErrorPage";
 
 class App extends React.Component {
   state = {
@@ -29,6 +30,7 @@ class App extends React.Component {
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
           <UserProfile path="/user/:username" />
+          <DefaultErrorPage path="/*" default />
         </Router>
       </div>
     );
