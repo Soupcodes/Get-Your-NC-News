@@ -5,6 +5,7 @@ import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import "./styles/TrendingArticles.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { tsParenthesizedType } from "@babel/types";
 
 class TrendingArticles extends Component {
   state = {
@@ -15,6 +16,7 @@ class TrendingArticles extends Component {
   };
 
   render() {
+    console.log(this.props.sort_by, "trending");
     const { articles, sort_by, isLoading } = this.state;
     return isLoading ? (
       <LoadingSpinner />
@@ -43,6 +45,11 @@ class TrendingArticles extends Component {
     if (prevState.sort_by !== sort_by || prevState.order !== order) {
       this.fetchArticles();
     }
+
+    //IT IS POSSIBLE TO PASS DOWN PROPS FROM ROUTER BUT prevProps & prevState becomes invalid comparisons
+    // if (prevProps.sort_by === this.props.sort_by) {
+    //   this.fetchArticles();
+    // }
   }
 
   fetchArticles = () => {
