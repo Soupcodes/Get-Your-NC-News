@@ -7,7 +7,7 @@ import TrendingArticles from "./pages/Trending/TrendingArticles";
 import SortArticles from "./pages/SortArticles/SortArticles";
 import TopicsList from "./pages/TopicsList/TopicsList";
 import UserProfile from "./pages/UserProfile/UserProfile";
-import ArticleById from "./pages/ArticleById/ArticleById";
+import ArticleById from "./pages/ArticleById/ArticleByIdPage";
 
 class App extends React.Component {
   state = {
