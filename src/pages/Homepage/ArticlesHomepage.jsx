@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import ArticleList from "./ArticleList";
+import LoadingSpinner from "../Assets/LoadingSpinner";
 
 class ArticlesHomepage extends Component {
   state = {
@@ -12,7 +13,7 @@ class ArticlesHomepage extends Component {
   render() {
     const { isLoading, articles } = this.state;
     return isLoading ? (
-      <p>Loading ......</p>
+      <LoadingSpinner />
     ) : (
       <section>
         <ArticleList articles={articles} />

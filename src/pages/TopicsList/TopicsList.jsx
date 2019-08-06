@@ -5,6 +5,7 @@ import styles from "./styles/TopicsList.module.css";
 import SortBy from "../TopicsList/SortBy";
 import OrderBy from "../TopicsList/OrderBy";
 import Topic from "./Topic";
+import LoadingSpinner from "../Assets/LoadingSpinner";
 
 class TopicsList extends Component {
   state = {
@@ -22,7 +23,7 @@ class TopicsList extends Component {
     //Renders loading screen when fetching topicsList
 
     return this.state.isLoading ? (
-      <p>Loading ......</p>
+      <LoadingSpinner />
     ) : (
       //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
       <section>
@@ -53,7 +54,6 @@ class TopicsList extends Component {
   //mounts a blank page with topics to select from initially
   componentDidMount() {
     const { topic } = this.props;
-
     if (topic) {
       this.setState(currentState => {
         currentState.topic = topic;

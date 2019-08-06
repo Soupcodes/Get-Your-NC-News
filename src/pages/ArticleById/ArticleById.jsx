@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import { Link } from "@reach/router";
+import LoadingSpinner from "../Assets/LoadingSpinner";
 
 class ArticleById extends Component {
   state = {
@@ -11,7 +12,7 @@ class ArticleById extends Component {
   render() {
     const { article, isLoading } = this.state;
     return isLoading ? (
-      <p>Loading......</p>
+      <LoadingSpinner />
     ) : (
       <ul>
         <li>

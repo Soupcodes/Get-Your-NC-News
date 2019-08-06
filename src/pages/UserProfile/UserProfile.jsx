@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../../api";
+import LoadingSpinner from "../Assets/LoadingSpinner";
 
 class UserProfile extends Component {
   state = {
@@ -8,15 +9,16 @@ class UserProfile extends Component {
   };
 
   render() {
-    return this.state.isLoading ? (
-      <p>Loading......</p>
+    const { user, isLoading } = this.state;
+    return isLoading ? (
+      <LoadingSpinner />
     ) : (
       <ul>
         <li>
           <h1>LEFT ALIGN</h1>
-          <p>{this.state.user.name}</p>
-          <img src={this.state.user.avatar_url} alt="profile-pic" />
-          <p>{this.state.user.username}</p>
+          <p>{user.name}</p>
+          <img src={user.avatar_url} alt="profile-pic" />
+          <p>{user.username}</p>
         </li>
       </ul>
     );

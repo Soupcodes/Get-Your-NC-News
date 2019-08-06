@@ -4,37 +4,44 @@ import ArticleCard from "../Homepage/ArticleList";
 import SortBy from "./SortBy";
 import OrderBy from "./OrderBy";
 import "./styles/TrendingArticles.css";
+import LoadingSpinner from "../Assets/LoadingSpinner";
 
 class TrendingArticles extends Component {
   state = {
     sort_by: "comment_count",
     order: "desc",
-    articles: null
+    articles: null,
+    isLoading: true
   };
 
   render() {
-    console.log("rendering");
-    return !this.state.articles ? (
-      <p>Loading......</p>
+    const { articles, sort_by, order, isLoading } = this.state;
+    return isLoading ? (
+      <LoadingSpinner />
     ) : (
       <section>
         <div className="forms">
           <SortBy sortArticles={this.sortArticles} className="sort" />
           <OrderBy
             orderArticles={this.orderArticles}
-            sort_by={this.state.sort_by}
+            sort_by={sort_by}
             className="order"
           />
         </div>
-        <ArticleCard articles={this.state.articles} />
+        <ArticleCard articles={articles} />
       </section>
     );
   }
 
   componentDidMount() {
-    console.log("MOUNTING");
-    api.getArticles(this.state).then(articles => this.setState({ articles }));
+    this.fetchArticles();
   }
+
+  fetchArticles = () => {
+    api
+      .getArticles(this.state)
+      .then(articles => this.setState({ articles, isLoading: false }));
+  };
 
   sortArticles = articles => {
     this.setState({ articles });
