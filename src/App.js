@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
 import SortArticles from "./pages/SortArticles/SortArticles";
-import TopicsList from "./pages/TopicsList/TopicsList";
+import TopicsList from "./pages/TopicsList/TopicsPage";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ArticleById from "./pages/ArticleById/ArticleByIdPage";
 import DefaultErrorPage from "./components/DefaultErrorPage";
@@ -24,6 +24,7 @@ class App extends React.Component {
 
         <Router>
           <ArticlesHomepage path="/" />
+          <ArticlesHomepage path="/articles" />
           <TrendingArticles path="/trending" />
           <SortArticles path="/sort_articles_by/:sort_by" />
           <ArticleById path="/articles/:article_id" user={this.state.user} />

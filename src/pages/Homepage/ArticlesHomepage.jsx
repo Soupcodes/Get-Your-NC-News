@@ -8,13 +8,15 @@ class ArticlesHomepage extends Component {
   state = {
     articles: null,
     isLoading: true,
-    err: null
+    errStatus: null,
+    errMsg: null
   };
 
   render() {
-    const { isLoading, articles, err } = this.state;
+    const { isLoading, articles, errStatus, errMsg } = this.state;
     if (isLoading) return <LoadingSpinner />;
-    else if (err) return <DefaultErrorPage />;
+    if (errStatus)
+      return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
 
     return (
       <section>
@@ -31,7 +33,13 @@ class ArticlesHomepage extends Component {
     api
       .getArticles()
       .then(articles => this.setState({ articles, isLoading: false }))
-      .catch(err => this.setState({ err: true, isLoading: false }));
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 }
 

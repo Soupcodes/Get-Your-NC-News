@@ -3,20 +3,26 @@ import * as api from "../../../api";
 import CommentList from "./CommentList";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import PostCommentBox from "./PostCommentForm";
+import DefaultErrorPage from "../../../components/DefaultErrorPage";
 
 class CommentsByArticleId extends Component {
   state = {
     comments: null,
-    isLoading: true
+    isLoading: true,
+    errStatus: null,
+    errMsg: null
   };
 
   render() {
-    const { comments, isLoading } = this.state;
+    const { comments, isLoading, errStatus, errMsg } = this.state;
     const { username, id } = this.props;
     //NOTE: can't use article_id as it the key on request is 'id'
-    return isLoading ? (
-      <LoadingSpinner />
-    ) : (
+
+    if (isLoading) return <LoadingSpinner />;
+    if (errStatus)
+      return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
+
+    return (
       <>
         <PostCommentBox
           postNewComment={this.postNewComment}
@@ -40,7 +46,14 @@ class CommentsByArticleId extends Component {
     console.log(this.props, "HERE");
     return api
       .getCommentsByArticleId(id)
-      .then(comments => this.setState({ comments, isLoading: false }));
+      .then(comments => this.setState({ comments, isLoading: false }))
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 
   postNewComment = (article_id, comment) => {
