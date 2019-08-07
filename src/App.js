@@ -19,7 +19,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Navbar className="nav" user={this.state.user} />
+          <div className="container">
+            <div id="logo">
+              <img
+                src="https://t3.ftcdn.net/jpg/01/69/66/58/240_F_169665810_2qf9sivWVW0rEEzBQEXKThw1jBWD47Kx.jpg"
+                alt="fake-news"
+              />
+            </div>
+            <Navbar id="globalNav" user={this.state.user} />
+          </div>
         </header>
 
         <Router>

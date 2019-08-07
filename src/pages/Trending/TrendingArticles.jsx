@@ -5,7 +5,6 @@ import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import "./styles/TrendingArticles.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { tsParenthesizedType } from "@babel/types";
 
 class TrendingArticles extends Component {
   state = {
