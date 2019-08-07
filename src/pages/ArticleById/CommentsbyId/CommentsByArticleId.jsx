@@ -6,6 +6,7 @@ import PostCommentBox from "./PostCommentForm";
 import DefaultErrorPage from "../../../components/DefaultErrorPage";
 import SortComments from "./SortComments";
 import OrderComments from "./OrderComments";
+import "./styles/CommentsByArticleId.module.css";
 
 class CommentsByArticleId extends Component {
   state = {
@@ -33,7 +34,7 @@ class CommentsByArticleId extends Component {
           username={username}
           article_id={id}
         />
-        <div>
+        <div className="forms">
           <SortComments sortComments={this.sortComments} />
           <OrderComments orderComments={this.orderComments} />
         </div>
@@ -58,7 +59,6 @@ class CommentsByArticleId extends Component {
 
   fetchCommentsByArticleId = () => {
     const { id } = this.props;
-    console.log(this.props, "HERE");
     return api
       .getCommentsByArticleId(id, this.state)
       .then(comments => this.setState({ comments, isLoading: false }))
@@ -80,7 +80,7 @@ class CommentsByArticleId extends Component {
   };
 
   deleteComment = comment_id => {
-    // console.log("delete clicked");
+    console.log("delete clicked");
     api.deleteCommentById(comment_id).then(deleted => {
       if (deleted === 204) {
         this.componentDidMount();

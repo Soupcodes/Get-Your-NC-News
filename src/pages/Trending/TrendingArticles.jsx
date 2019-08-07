@@ -15,7 +15,6 @@ class TrendingArticles extends Component {
   };
 
   render() {
-    console.log(this.props.sort_by, "trending");
     const { articles, sort_by, isLoading } = this.state;
     return isLoading ? (
       <LoadingSpinner />

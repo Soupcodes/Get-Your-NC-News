@@ -12,10 +12,10 @@ class Navbar extends Component {
         {/* <img src="https://pbs.twimg.com/media/Dc6Z6GbWkAELnoS.png"/> */}
         {/* <Link to="/">Logo</Link> */}
         <Link to="/">Latest</Link>
-        <Link to="/trending" sort_by={"comment_count"}>
-          Top [Comments atm, need to add votes]
-        </Link>
         <Link to="/topics">Topics</Link>
+        <Link to="/trending" sort_by={"comment_count"}>
+          Articles
+        </Link>
         <User user={this.props.user} />
       </nav>
     );

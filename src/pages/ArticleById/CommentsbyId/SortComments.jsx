@@ -12,9 +12,6 @@ const SortComments = ({ sortComments }) => {
         <select onChange={handleChange}>
           <option value="created_at">Date Posted</option>
           <option value="votes">Votes</option>
-          {/* <option value="Date (desc)" onChange={this.handleChange}>
-              Date posted / desc
-            </option> */}
         </select>
       </label>
     </form>

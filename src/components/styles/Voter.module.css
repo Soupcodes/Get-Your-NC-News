@@ -1,0 +1,11 @@
+.voteButtons {
+  display: flex;
+  /* width: 20px; */
+}
+
+.buttons {
+  margin: 10px 0 0 10px;
+  padding: 0;
+  border: auto;
+  height: 30px;
+}

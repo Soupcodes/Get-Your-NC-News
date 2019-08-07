@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import { Router, Link } from "@reach/router";
 import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
@@ -19,16 +19,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="container">
-            <div id="logo">
+          <div className={styles.container}>
+            <div className={styles.logo}>
               <Link to="/">
-                <img
-                  src="https://t3.ftcdn.net/jpg/01/69/66/58/240_F_169665810_2qf9sivWVW0rEEzBQEXKThw1jBWD47Kx.jpg"
-                  alt="fake-news"
+                <span
+                  className="iconify"
+                  data-icon="emojione-monotone:newspaper"
+                  data-inline="false"
                 />
               </Link>
             </div>
-            <Navbar id="globalNav" user={this.state.user} />
+            <Navbar className={styles.nav} user={this.state.user} />
           </div>
         </header>
 
