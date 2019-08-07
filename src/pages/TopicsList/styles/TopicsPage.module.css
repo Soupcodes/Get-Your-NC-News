@@ -15,9 +15,9 @@ a {
   color: black;
 }
 
-a:hover {
+/* a:hover {
   color: white;
-}
+} */
 
 .minHeight {
   /* min-height: 100vh; */

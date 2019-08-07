@@ -13,19 +13,20 @@ const ArticleCard = ({ article }) => {
       <li>
         <h1 className={styles.topic}>{article.topic.toUpperCase()}</h1>
 
-        <h2 className={styles.title}>
-          <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-        </h2>
+        <Link to={`/articles/${article.article_id}`}>
+          <h2 className={styles.title}>{article.title} </h2>
+        </Link>
 
-        <div className={styles.user}>
-          <span
-            className="iconify"
-            data-icon="fa-solid:user-alt"
-            data-inline="false"
-          />
-          <Link to={`/user/${article.author}`}>{article.author}</Link>
-        </div>
-
+        <>
+          <Link to={`/user/${article.author}`}>
+            <span
+              className="iconify"
+              data-icon="fa-solid:user-alt"
+              data-inline="false"
+            />
+            <span className={styles.highlightUser}>{article.author}</span>
+          </Link>
+        </>
         <p className={styles.comment_count}>
           <span
             className="iconify"

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "@reach/router";
-import styles from "../pages/Homepage/styles/Navbar.module.css";
+import styles from "./styles/Navbar.module.css";
 import User from "./User";
 
 const Navbar = ({ user }) => {
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.highlightHover}>
       <Link to="/">Latest</Link>
       <Link to="/topics">Topics</Link>
       <Link to="/trending" sort_by={"comment_count"}>

@@ -20,13 +20,15 @@ class TrendingArticles extends Component {
       <LoadingSpinner />
     ) : (
       <>
-        <div className={styles.forms}>
-          <SortBy sortArticles={this.sortArticles} className="sort" />
-          <OrderBy
-            orderArticles={this.orderArticles}
-            sort_by={sort_by}
-            className="order"
-          />
+        <div>
+          <div className={styles.forms}>
+            <SortBy sortArticles={this.sortArticles} className="sort" />
+            <OrderBy
+              orderArticles={this.orderArticles}
+              sort_by={sort_by}
+              className="order"
+            />
+          </div>
           <ArticleList articles={articles} />
         </div>
       </>

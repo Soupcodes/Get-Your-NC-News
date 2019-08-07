@@ -1,8 +1,10 @@
 .forms {
   display: flex;
   border: 2px solid blue;
+  width: 80vw;
+  padding: 0;
+  margin: 25px auto;
   justify-content: flex-end;
-  margin: 20px 55px 0;
 }
 
 /* FOR MOBILE If the screen size is 600px wide or less */

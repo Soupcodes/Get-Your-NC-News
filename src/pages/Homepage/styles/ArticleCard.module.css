@@ -43,10 +43,22 @@ li {
   width: 70%;
 }
 
+h2.title:hover {
+  color: white;
+}
+
 .user {
   grid-area: user;
   margin: 10px auto;
   padding: 0;
+}
+
+.highlightUser {
+  margin-left: 5px;
+}
+
+.highlightUser:hover {
+  color: white;
 }
 
 .comment_count {

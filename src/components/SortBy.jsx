@@ -4,7 +4,7 @@ const SortBy = ({ sortArticles }) => {
   const handleChange = e => {
     sortArticles(e.target.value);
   };
-
+  console.log("RENDERING SORTBY");
   return (
     <form>
       <label>
@@ -15,9 +15,6 @@ const SortBy = ({ sortArticles }) => {
           <option value="created_at">Date Posted</option>
           <option value="title">Title</option>
           <option value="votes">Votes</option>
-          {/* <option value="Date (desc)" onChange={this.handleChange}>
-              Date posted / desc
-            </option> */}
         </select>
       </label>
     </form>
