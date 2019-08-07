@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "@reach/router";
 
 const ArticleCard = ({ article }) => {
+  const timeStamp = new Date(article.created_at);
+  const posted = timeStamp.toLocaleDateString();
+
   return (
     <ul>
       <li>
@@ -20,8 +23,8 @@ const ArticleCard = ({ article }) => {
         <p>
           Comments: {article.comment_count} ------ note: change into an icon
         </p>
-        <p>Votes: {article.votes} ------ note: change into an icon</p>
-        <p>Posted: {article.created_at}</p>
+        <span>{article.votes}</span>
+        <p>Posted: {posted}</p>
       </li>
     </ul>
   );

@@ -4,13 +4,17 @@ import CommentList from "./CommentList";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import PostCommentBox from "./PostCommentForm";
 import DefaultErrorPage from "../../../components/DefaultErrorPage";
+import SortComments from "./SortComments";
+import OrderComments from "./OrderComments";
 
 class CommentsByArticleId extends Component {
   state = {
     comments: null,
     isLoading: true,
     errStatus: null,
-    errMsg: null
+    errMsg: null,
+    sort_by: "created_at",
+    order: "desc"
   };
 
   render() {
@@ -29,6 +33,10 @@ class CommentsByArticleId extends Component {
           username={username}
           article_id={id}
         />
+        <div>
+          <SortComments sortComments={this.sortComments} />
+          <OrderComments orderComments={this.orderComments} />
+        </div>
         <CommentList
           comments={comments}
           username={username}
@@ -41,11 +49,18 @@ class CommentsByArticleId extends Component {
     this.fetchCommentsByArticleId();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { sort_by, order } = this.state;
+    if (prevState.sort_by !== sort_by || prevState.order !== order) {
+      this.fetchCommentsByArticleId();
+    }
+  }
+
   fetchCommentsByArticleId = () => {
     const { id } = this.props;
     console.log(this.props, "HERE");
     return api
-      .getCommentsByArticleId(id)
+      .getCommentsByArticleId(id, this.state)
       .then(comments => this.setState({ comments, isLoading: false }))
       .catch(({ response }) =>
         this.setState({
@@ -71,6 +86,14 @@ class CommentsByArticleId extends Component {
         this.componentDidMount();
       }
     });
+  };
+
+  sortComments = sort_by => {
+    this.setState({ sort_by });
+  };
+
+  orderComments = order => {
+    this.setState({ order });
   };
 }
 

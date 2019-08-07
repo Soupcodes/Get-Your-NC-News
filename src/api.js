@@ -26,8 +26,10 @@ export const getTopics = async query => {
   return topics;
 };
 
-export const getCommentsByArticleId = async id => {
-  const { data } = await request.get(`/articles/${id}/comments`);
+export const getCommentsByArticleId = async (id, query) => {
+  const { data } = await request.get(`/articles/${id}/comments`, {
+    params: query
+  });
   return data.comments;
 };
 

@@ -1,8 +1,8 @@
 import React from "react";
 
-const SortBy = ({ sortArticles }) => {
+const SortComments = ({ sortComments }) => {
   const handleChange = e => {
-    sortArticles(e.target.value);
+    sortComments(e.target.value);
   };
 
   return (
@@ -10,10 +10,7 @@ const SortBy = ({ sortArticles }) => {
       <label>
         Sort by:
         <select onChange={handleChange}>
-          <option value="comment_count">Most Commented</option>
-          <option value="author">Author</option>
           <option value="created_at">Date Posted</option>
-          <option value="title">Title</option>
           <option value="votes">Votes</option>
           {/* <option value="Date (desc)" onChange={this.handleChange}>
               Date posted / desc
@@ -24,4 +21,4 @@ const SortBy = ({ sortArticles }) => {
   );
 };
 
-export default SortBy;
+export default SortComments;
