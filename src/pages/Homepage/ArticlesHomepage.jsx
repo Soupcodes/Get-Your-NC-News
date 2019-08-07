@@ -18,7 +18,12 @@ class ArticlesHomepage extends Component {
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
 
-    return <ArticleList articles={articles} />;
+    return (
+      <>
+        <h1>Latest</h1>
+        <ArticleList articles={articles} />
+      </>
+    );
   }
 
   componentDidMount() {

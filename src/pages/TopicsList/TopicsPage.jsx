@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import ArticleList from "../Homepage/ArticleList";
-import styles from "./styles/TopicsList.module.css";
+import styles from "./styles/TopicsPage.module.css";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import TopicCard from "./TopicCard";
@@ -37,9 +37,11 @@ class TopicsPage extends Component {
 
     return (
       //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
-      <section>
+      <>
         <nav className={styles.subnav}>
-          <TopicCard topics={topics} />
+          <section className={styles.minHeight}>
+            <TopicCard topics={topics} />
+          </section>
         </nav>
         {articles && (
           <>
@@ -50,7 +52,7 @@ class TopicsPage extends Component {
             <ArticleList articles={articles} />
           </>
         )}
-      </section>
+      </>
     );
   }
 

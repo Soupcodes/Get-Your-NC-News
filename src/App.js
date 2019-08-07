@@ -33,17 +33,19 @@ class App extends React.Component {
           </div>
         </header>
 
-        <Router>
-          <ArticlesHomepage path="/" />
-          <ArticlesHomepage path="/articles" />
-          <TrendingArticles path="/trending" sort_by={"comment_count"} />
-          <SortArticles path="/sort_articles_by/:sort_by" />
-          <ArticleById path="/articles/:article_id" user={this.state.user} />
-          <TopicsList path="topics" />
-          <TopicsList path="topics/:topic" />
-          <UserProfile path="/user/:username" />
-          <DefaultErrorPage default />
-        </Router>
+        {/* <section className={styles.minHeight}> */}
+          <Router>
+            <ArticlesHomepage path="/" />
+            <ArticlesHomepage path="/articles" />
+            <TrendingArticles path="/trending" sort_by={"comment_count"} />
+            <SortArticles path="/sort_articles_by/:sort_by" />
+            <ArticleById path="/articles/:article_id" user={this.state.user} />
+            <TopicsList path="topics" />
+            <TopicsList path="topics/:topic" />
+            <UserProfile path="/user/:username" />
+            <DefaultErrorPage default />
+          </Router>
+        {/* </section> */}
 
         <footer>
           <p className={styles.nowidth}>

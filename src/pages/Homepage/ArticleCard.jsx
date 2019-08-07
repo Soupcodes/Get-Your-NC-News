@@ -10,7 +10,7 @@ const ArticleCard = ({ article }) => {
   return (
     <ul className={styles.container}>
       <li>
-        <h1 className={styles.rotateTopic90Deg}>
+        <h1 className={styles.topic}>
           {article.topic.toUpperCase()}
         </h1>
 
