@@ -1,25 +1,43 @@
 import React from "react";
 import { Link } from "@reach/router";
+import styles from "./SingleArticleView.module.css";
+import Voter from "../../components/Voter";
 
 const SingleArticleView = ({ article }) => {
-  return (
-    <ul>
-      <li>
-        <h1>
-          <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
-        </h1>
-      </li>
-      <li>
-        <h2>{article.title}</h2>
-        <p>{article.body}</p>
-        <span>Author:</span>
-        <Link to={`/user/${article.author}`}>{article.author}</Link>
+  const timeStamp = new Date(article.created_at);
+  const posted = timeStamp.toLocaleDateString();
 
-        <p>Posted: {article.created_at}</p>
-        <p>
-          Comments: {article.comment_count} ---------NEED SPACING----------
-          <span>Votes: {article.votes}</span>
+  return (
+    <ul className={styles.article}>
+      <li>
+        <Link to={`/topics/${article.topic}`}>
+          <h1 className={styles.topic}>{article.topic}</h1>
+        </Link>
+
+        <h2 className={styles.title}>{article.title}</h2>
+        <p className={styles.body}>{article.body}</p>
+        <p className={styles.user}>
+          <span
+            className="iconify"
+            data-icon="fa-solid:user-alt"
+            data-inline="false"
+          />
+          <Link to={`/user/${article.author}`}>{article.author}</Link>
         </p>
+        <p className={styles.posted}>Posted: {posted}</p>
+        <p className={styles.comment_count}>
+          <span
+            className="iconify"
+            data-icon="fa-regular:comment"
+            data-inline="false"
+          />{" "}
+          {article.comment_count}
+        </p>
+        <Voter
+          id={article.article_id}
+          votes={article.votes}
+          className={styles.votes}
+        />
       </li>
     </ul>
   );

@@ -19,7 +19,7 @@ const ArticleCard = ({ article }) => {
 
         <div className={styles.user}>
           <span
-            class="iconify"
+            className="iconify"
             data-icon="fa-solid:user-alt"
             data-inline="false"
           />
@@ -28,7 +28,7 @@ const ArticleCard = ({ article }) => {
 
         <p className={styles.comment_count}>
           <span
-            class="iconify"
+            className="iconify"
             data-icon="fa-regular:comment"
             data-inline="false"
           />{" "}

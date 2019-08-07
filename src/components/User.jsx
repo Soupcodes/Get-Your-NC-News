@@ -6,7 +6,7 @@ const User = ({ user }) => {
     <Link to={`/user/${user}`}>
       {" "}
       <span
-        class="iconify"
+        className="iconify"
         data-icon="fa-solid:user-alt"
         data-inline="false"
       />{" "}
