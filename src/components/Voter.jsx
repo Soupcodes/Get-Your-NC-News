@@ -32,9 +32,8 @@ class Voter extends Component {
   }
 
   handleClick = inc_votes => {
-    console.log(inc_votes, "negative");
-    const { article_id } = this.props;
-    api.patchArticleById(article_id, { inc_votes }).then(() =>
+    const { id } = this.props;
+    api.patchArticleById(id, { inc_votes }).then(() =>
       this.setState(currentState => {
         return { changeVotes: currentState.changeVotes + inc_votes };
       })

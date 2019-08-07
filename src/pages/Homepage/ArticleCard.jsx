@@ -37,7 +37,7 @@ const ArticleCard = ({ article }) => {
 
         <p className={styles.posted}>Posted: {posted}</p>
 
-        <Voter article_id={article_id} votes={votes} className={styles.votes} />
+        <Voter id={article_id} votes={votes} className={styles.votes} />
       </li>
     </ul>
   );
