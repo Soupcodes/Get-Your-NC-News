@@ -40,7 +40,11 @@ export const postCommentToArticle = async (id, comment) => {
 };
 
 export const deleteCommentById = async comment_id => {
-  console.log(comment_id, "deleting from back-end");
   const { status } = await request.delete(`/comments/${comment_id}`);
   return status;
+};
+
+export const patchArticleById = async (article_id, inc_votes) => {
+  const { data } = await request.patch(`/articles/${article_id}`);
+  console.log(data);
 };

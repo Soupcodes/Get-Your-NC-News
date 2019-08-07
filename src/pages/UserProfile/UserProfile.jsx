@@ -3,7 +3,7 @@ import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import styles from "./styles/UserProfile.module.css";
-import ArticleList from "../Homepage/ArticleList";
+// import ArticleList from "../Homepage/ArticleList";
 
 class UserProfile extends Component {
   state = {
