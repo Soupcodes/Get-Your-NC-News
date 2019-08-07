@@ -4,7 +4,7 @@ ul.container {
   overflow: hidden;
   font-size: 15px;
   width: 80%;
-  margin: 50px auto;
+  margin: 0 auto 50px;
   padding: 0;
 }
 
@@ -18,55 +18,49 @@ li {
   grid-template-areas:
     "topic"
     "title"
-    " user"
+    "user"
     "comment_count"
     "votes"
     "posted";
-
+  text-align: center;
   margin: 0;
   padding: 0;
 }
 
-.rotateTopic90Deg {
+.topic {
   color: rgb(50, 144, 182);
   grid-area: topic;
-  /* transform: rotate(-90deg); */
-  margin: 0 25px;
+  margin: 20px auto 10px;
   padding: 0;
-  /* line-height: 10px; */
+  /* transform: rotate(-90deg); */
 }
 
 .title {
   grid-area: title;
-  margin-left: 25px;
+  margin: 10px auto;
+  padding: 0;
+  width: 70%;
 }
 
 .user {
   grid-area: user;
-  margin: 30px 0 0 0;
+  margin: 10px auto;
+  padding: 0;
 }
 
 .comment_count {
   grid-area: comment_count;
-  width: 30px;
-  margin: auto;
-}
-
-.votes {
-  grid-area: votes;
-  margin-left: 50px;
+  margin: 10px auto;
+  padding: 0;
 }
 
 .posted {
   grid-area: posted;
-  margin: auto;
+  margin: 10px auto 20px;
+  padding: 0;
+  width: 100%;
 }
 
 section {
   width: 50%;
 }
-
-/* .inline {
-  display: block;
-  background: blue;
-} */
