@@ -1,0 +1,15 @@
+.forms {
+  display: flex;
+  border: 2px solid blue;
+  justify-content: flex-end;
+  margin: 20px 55px 0;
+}
+
+/* FOR MOBILE If the screen size is 600px wide or less */
+@media screen and (max-width: 600px) {
+  select {
+    /* font-size: 10px; */
+    /* min-height: 5vh; */
+    width: 80px;
+  }
+}

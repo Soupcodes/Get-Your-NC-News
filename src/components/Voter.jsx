@@ -7,7 +7,7 @@ class Voter extends Component {
   render() {
     const { votes } = this.props.article;
     return (
-      <section className={styles.voteButtons}>
+      <section>
         <p>Votes: {votes}</p>
         <button className={styles.buttons}>
           <span

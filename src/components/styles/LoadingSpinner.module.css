@@ -1,0 +1,11 @@
+div.loading {
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  /* margin-left: 50px; */
+  text-align: center;
+  justify-items: center;
+  margin: auto;
+}

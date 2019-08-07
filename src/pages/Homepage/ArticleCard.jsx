@@ -1,26 +1,24 @@
 import React from "react";
 import { Link } from "@reach/router";
 import Voter from "../../components/Voter";
+import styles from "./styles/ArticleCard.module.css";
 
 const ArticleCard = ({ article }) => {
   const timeStamp = new Date(article.created_at);
   const posted = timeStamp.toLocaleDateString();
 
   return (
-    <ul>
+    <ul className={styles.container}>
       <li>
-        <header className="rotateTopic90Deg">
-          <h1>
-            {article.topic.toUpperCase()} ------ note: rotate 90 deg sidecard
-            title
-          </h1>
-        </header>
+        <h1 className={styles.rotateTopic90Deg}>
+          {article.topic.toUpperCase()}
+        </h1>
 
-        <h2 className="title">
+        <h2 className={styles.title}>
           <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
         </h2>
 
-        <div classname="user">
+        <div className={styles.user}>
           <span
             class="iconify"
             data-icon="fa-solid:user-alt"
@@ -29,7 +27,7 @@ const ArticleCard = ({ article }) => {
           <Link to={`/user/${article.author}`}>{article.author}</Link>
         </div>
 
-        <p className="comment_count">
+        <p className={styles.comment_count}>
           <span
             class="iconify"
             data-icon="fa-regular:comment"
@@ -38,9 +36,9 @@ const ArticleCard = ({ article }) => {
           {article.comment_count}
         </p>
 
-        <Voter article={article} />
+        <p className={styles.posted}>Posted: {posted}</p>
 
-        <p>Posted: {posted}</p>
+        <Voter article={article} className={styles.votes} />
       </li>
     </ul>
   );

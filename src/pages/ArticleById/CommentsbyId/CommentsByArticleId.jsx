@@ -84,6 +84,9 @@ class CommentsByArticleId extends Component {
     api.deleteCommentById(comment_id).then(deleted => {
       if (deleted === 204) {
         this.componentDidMount();
+        //         this.setState(currentState => {
+        // {comments: currentState.comments}
+        //         })
       }
     });
   };

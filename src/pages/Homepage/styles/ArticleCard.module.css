@@ -1,0 +1,72 @@
+ul.container {
+  list-style: none;
+  border: 2px solid black;
+  overflow: hidden;
+  font-size: 15px;
+  width: 80%;
+  margin: 50px auto;
+  padding: 0;
+}
+
+li {
+  display: grid;
+  /* grid-template-columns: minmax(min-content, 300px); */
+  /* grid-template-areas:
+    "topic title title title title"
+    "topic . . user ."
+    "topic comment_count votes votes posted"; */
+  grid-template-areas:
+    "topic"
+    "title"
+    " user"
+    "comment_count"
+    "votes"
+    "posted";
+
+  margin: 0;
+  padding: 0;
+}
+
+.rotateTopic90Deg {
+  color: rgb(50, 144, 182);
+  grid-area: topic;
+  /* transform: rotate(-90deg); */
+  margin: 0 25px;
+  padding: 0;
+  /* line-height: 10px; */
+}
+
+.title {
+  grid-area: title;
+  margin-left: 25px;
+}
+
+.user {
+  grid-area: user;
+  margin: 30px 0 0 0;
+}
+
+.comment_count {
+  grid-area: comment_count;
+  width: 30px;
+  margin: auto;
+}
+
+.votes {
+  grid-area: votes;
+  margin-left: 50px;
+}
+
+.posted {
+  grid-area: posted;
+  margin: auto;
+}
+
+section {
+  width: 50%;
+}
+
+/* .inline {
+  display: block;
+  background: blue;
+} */

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles/ArticleList.module.css";
+// import styles from "./styles/ArticleList.module.css";
 import ArticleCard from "./ArticleCard";
 
 const ArticleList = ({ articles }) => {
@@ -8,7 +8,7 @@ const ArticleList = ({ articles }) => {
       <ArticleCard
         article={article}
         key={article.article_id}
-        className={styles.ArticleCard}
+        // className={styles.ArticleCard}
       />
     );
   });

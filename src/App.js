@@ -42,11 +42,13 @@ class App extends React.Component {
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
           <UserProfile path="/user/:username" />
-          <DefaultErrorPage path="/*" default />
+          <DefaultErrorPage default />
         </Router>
 
         <footer>
-          <p>NC News &copy; 2019 | Designed by: Alan Tong</p>
+          <p className={styles.nowidth}>
+            NC News &copy; 2019 | Designed by: Alan Tong
+          </p>
         </footer>
       </div>
     );

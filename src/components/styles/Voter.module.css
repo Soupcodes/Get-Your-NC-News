@@ -1,11 +1,27 @@
-.voteButtons {
+/* .buttons {
   display: flex;
-  /* width: 20px; */
+  flex-wrap: wrap;
+  width: 200px;
+} */
+section {
+  margin: auto;
+}
+
+p {
+  width: 100px;
+  margin: auto;
+  /* padding-left: 15px; */
 }
 
 .buttons {
-  margin: 10px 0 0 10px;
   padding: 0;
   border: auto;
   height: 30px;
+  margin: 0 0 20px 0;
+  /* width: 50px; */
 }
+
+/* .votes {
+  grid-area: votes;
+  margin-left: 50px;
+} */

@@ -18,11 +18,7 @@ class ArticlesHomepage extends Component {
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
 
-    return (
-      <section>
-        <ArticleList articles={articles} />
-      </section>
-    );
+    return <ArticleList articles={articles} />;
   }
 
   componentDidMount() {
@@ -32,7 +28,12 @@ class ArticlesHomepage extends Component {
   fetchArticles = () => {
     api
       .getArticles()
-      .then(articles => this.setState({ articles, isLoading: false }))
+      .then(articles =>
+        this.setState({
+          articles,
+          isLoading: false
+        })
+      )
       .catch(({ response }) =>
         this.setState({
           errStatus: response.status,

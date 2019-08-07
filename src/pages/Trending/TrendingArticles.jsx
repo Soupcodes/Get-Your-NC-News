@@ -3,7 +3,7 @@ import * as api from "../../api";
 import ArticleList from "../Homepage/ArticleList";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
-import "./styles/TrendingArticles.css";
+import styles from "./styles/TrendingArticles.module.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 class TrendingArticles extends Component {
@@ -19,8 +19,8 @@ class TrendingArticles extends Component {
     return isLoading ? (
       <LoadingSpinner />
     ) : (
-      <section>
-        <div className="forms">
+      <>
+        <div className={styles.forms}>
           <SortBy sortArticles={this.sortArticles} className="sort" />
           <OrderBy
             orderArticles={this.orderArticles}
@@ -29,7 +29,7 @@ class TrendingArticles extends Component {
           />
         </div>
         <ArticleList articles={articles} />
-      </section>
+      </>
     );
   }
 
