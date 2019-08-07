@@ -41,6 +41,10 @@ class App extends React.Component {
           <UserProfile path="/user/:username" />
           <DefaultErrorPage path="/*" default />
         </Router>
+
+        <footer>
+          <p>NC News &copy; 2019 | Designed by: Alan Tong</p>
+        </footer>
       </div>
     );
   }
