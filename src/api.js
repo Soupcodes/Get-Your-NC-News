@@ -48,3 +48,8 @@ export const patchArticleById = async (article_id, inc_votes) => {
   const { data } = await request.patch(`/articles/${article_id}`, inc_votes);
   return data.article;
 };
+
+export const patchCommentById = async (comment_id, inc_votes) => {
+  const { data } = await request.patch(`/comments/${comment_id}`, inc_votes);
+  return data.comment;
+};

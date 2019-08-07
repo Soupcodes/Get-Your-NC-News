@@ -32,12 +32,20 @@ class Voter extends Component {
   }
 
   handleClick = inc_votes => {
-    const { id } = this.props;
-    api.patchArticleById(id, { inc_votes }).then(() =>
-      this.setState(currentState => {
-        return { changeVotes: currentState.changeVotes + inc_votes };
-      })
-    );
+    const { id, comment_id } = this.props;
+    if (id) {
+      api.patchArticleById(id, { inc_votes }).then(() =>
+        this.setState(currentState => {
+          return { changeVotes: currentState.changeVotes + inc_votes };
+        })
+      );
+    } else if (comment_id) {
+      api.patchCommentById(comment_id, { inc_votes }).then(() =>
+        this.setState(currentState => {
+          return { changeVotes: currentState.changeVotes + inc_votes };
+        })
+      );
+    }
   };
 }
 

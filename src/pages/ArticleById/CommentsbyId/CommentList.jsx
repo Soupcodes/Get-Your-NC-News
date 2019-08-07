@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import DeleteButton from "../../../components/DeleteButton";
+import Voter from "../../../components/Voter";
 
 const CommentList = ({ comments, username, deleteComment }) => {
   return comments.map(comment => {
@@ -13,7 +14,7 @@ const CommentList = ({ comments, username, deleteComment }) => {
             <Link to={`/user/${comment.author}`}>{comment.author}</Link>
           </h3>
           <p>{comment.body}</p>
-          <p>Votes: {comment.votes}</p>
+          <Voter votes={comment.votes} comment_id={comment.comment_id} />
           <p>Posted: {posted}</p>
         </li>
         {username === comment.author ? (
