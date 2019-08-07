@@ -27,8 +27,8 @@ class TrendingArticles extends Component {
             sort_by={sort_by}
             className="order"
           />
+          <ArticleList articles={articles} />
         </div>
-        <ArticleList articles={articles} />
       </>
     );
   }
