@@ -6,9 +6,10 @@
   width: 80%;
   margin: 50px auto;
   padding: 0;
+  background: rgb(50, 144, 182, 0.4);
 }
 
-li {
+li.articles {
   grid-template-areas:
     "topic"
     "title"

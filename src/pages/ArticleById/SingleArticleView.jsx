@@ -9,7 +9,7 @@ const SingleArticleView = ({ article }) => {
 
   return (
     <ul className={styles.article}>
-      <li>
+      <li className={styles.articles}>
         <Link to={`/topics/${article.topic}`}>
           <h1 className={styles.topic}>{article.topic}</h1>
         </Link>

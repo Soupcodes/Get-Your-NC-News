@@ -1,0 +1,51 @@
+.comments {
+  list-style: none;
+  border: 2px solid black;
+  overflow: hidden;
+  font-size: 15px;
+  width: 80%;
+  margin: 50px auto;
+  padding: 0;
+}
+
+li.commentList {
+  grid-template-areas:
+    "author"
+    "body"
+    "votes"
+    "posted";
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: rgb(50, 144, 182, 0.2);
+}
+
+.author {
+  grid-area: author;
+  margin: 10px auto;
+  padding: 0;
+}
+
+.body {
+  grid-area: body;
+  margin: 0 auto 20px;
+  padding: 0;
+}
+
+.votes {
+  grid-area: votes;
+  margin: 10px auto;
+  padding: 0;
+}
+
+.posted {
+  grid-area: posted;
+  margin: 0 auto 20px;
+  padding: 0;
+}
+
+.delete {
+  grid-area: delete;
+  margin: 20px auto;
+  padding: 0;
+}
