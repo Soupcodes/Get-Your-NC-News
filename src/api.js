@@ -45,6 +45,6 @@ export const deleteCommentById = async comment_id => {
 };
 
 export const patchArticleById = async (article_id, inc_votes) => {
-  const { data } = await request.patch(`/articles/${article_id}`);
-  console.log(data);
+  const { data } = await request.patch(`/articles/${article_id}`, inc_votes);
+  return data.article;
 };

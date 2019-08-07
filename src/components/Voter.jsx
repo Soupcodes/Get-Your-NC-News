@@ -8,10 +8,11 @@ class Voter extends Component {
   };
 
   render() {
-    const { votes } = this.props.article;
+    const { votes } = this.props;
+    const { changeVotes } = this.state;
     return (
       <section>
-        <p>Votes: {votes}</p>
+        <p>Votes: {votes + changeVotes}</p>
         <button className={styles.buttons} onClick={() => this.handleClick(1)}>
           <span
             className="iconify"
@@ -31,7 +32,13 @@ class Voter extends Component {
   }
 
   handleClick = inc_votes => {
-    api.patchArticleById().then(test => console.log(test, "here"));
+    console.log(inc_votes, "negative");
+    const { article_id } = this.props;
+    api.patchArticleById(article_id, { inc_votes }).then(() =>
+      this.setState(currentState => {
+        return { changeVotes: currentState.changeVotes + inc_votes };
+      })
+    );
   };
 }
 

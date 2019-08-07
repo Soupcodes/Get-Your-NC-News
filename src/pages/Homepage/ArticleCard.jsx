@@ -6,13 +6,12 @@ import styles from "./styles/ArticleCard.module.css";
 const ArticleCard = ({ article }) => {
   const timeStamp = new Date(article.created_at);
   const posted = timeStamp.toLocaleDateString();
+  const { article_id, votes } = article;
 
   return (
     <ul className={styles.container}>
       <li>
-        <h1 className={styles.topic}>
-          {article.topic.toUpperCase()}
-        </h1>
+        <h1 className={styles.topic}>{article.topic.toUpperCase()}</h1>
 
         <h2 className={styles.title}>
           <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
@@ -38,7 +37,7 @@ const ArticleCard = ({ article }) => {
 
         <p className={styles.posted}>Posted: {posted}</p>
 
-        <Voter article={article} className={styles.votes} />
+        <Voter article_id={article_id} votes={votes} className={styles.votes} />
       </li>
     </ul>
   );
