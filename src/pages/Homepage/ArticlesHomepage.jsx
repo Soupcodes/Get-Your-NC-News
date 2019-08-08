@@ -24,15 +24,8 @@ class ArticlesHomepage extends Component {
     return (
       <>
         <h1>Latest</h1>
-        {/* <ArticleList articles={articles} /> */}
         {articles.map(article => {
-          return (
-            <ArticleCard
-              article={article}
-              key={article.article_id}
-              // className={styles.ArticleCard}
-            />
-          );
+          return <ArticleCard article={article} key={article.article_id} />;
         })}
         <p>{page}</p>
         <ChangePage page={page} browsePage={this.browsePage} />
@@ -46,6 +39,8 @@ class ArticlesHomepage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;
+    // const { sort_by, order } = prevState;
+
     if (prevState.page !== page) {
       api
         .getArticles({ p: page })
