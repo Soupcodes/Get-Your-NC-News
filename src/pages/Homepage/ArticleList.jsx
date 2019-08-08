@@ -28,8 +28,8 @@ class ArticleList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { sort_by, order } = this.props;
-    if (prevProps.sort_by !== sort_by || prevProps.order !== order) {
+    // const { sort_by, order, p, topic } = this.props;
+    if (prevProps !== this.props) {
       this.fetchArticles();
     }
   }

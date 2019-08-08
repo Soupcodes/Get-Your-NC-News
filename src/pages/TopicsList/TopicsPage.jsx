@@ -20,7 +20,15 @@ class TopicsPage extends Component {
   };
 
   render() {
-    const { sort_by, order, topics, isLoading, errStatus, errMsg } = this.state;
+    const {
+      sort_by,
+      order,
+      topics,
+      isLoading,
+      errStatus,
+      errMsg,
+      topic
+    } = this.state;
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
@@ -38,7 +46,11 @@ class TopicsPage extends Component {
           <SortBy sortArticles={this.sortArticles} order={order} />
           <OrderBy orderArticles={this.orderArticles} sort_by={sort_by} />
         </div>
-        <ArticleList sort_by={sort_by} order={order} />
+        {topic ? (
+          <ArticleList sort_by={sort_by} order={order} topic={topic} />
+        ) : (
+          <></>
+        )}
       </>
     );
   }

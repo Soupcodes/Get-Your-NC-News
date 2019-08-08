@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import style from "./styles/TopicsPage.module.css";
 
-const Topic = ({ topics }) => {
+const TopicCard = ({ topics }) => {
   return topics.map(topic => (
     <section key={topic.slug}>
       <Link to={`/topics/${topic.slug}`} className={style.links}>
@@ -32,4 +32,4 @@ const Topic = ({ topics }) => {
   ));
 };
 
-export default Topic;
+export default TopicCard;
