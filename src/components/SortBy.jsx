@@ -7,7 +7,6 @@ const SortBy = ({ sortArticles }) => {
   return (
     <form>
       <label>
-        Sort by:
         <select onChange={handleChange}>
           <option value="comment_count">Most Commented</option>
           <option value="author">Author</option>
