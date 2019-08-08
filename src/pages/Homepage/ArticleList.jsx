@@ -27,6 +27,13 @@ class ArticleList extends Component {
     this.fetchArticles();
   }
 
+  componentDidUpdate(prevProps) {
+    const { sort_by, order } = this.props;
+    if (prevProps.sort_by !== sort_by || prevProps.order !== order) {
+      this.fetchArticles();
+    }
+  }
+
   fetchArticles = () => {
     api
       .getArticles(this.props)

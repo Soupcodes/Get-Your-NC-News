@@ -4,7 +4,6 @@ const SortBy = ({ sortArticles }) => {
   const handleChange = e => {
     sortArticles(e.target.value);
   };
-  console.log("RENDERING SORTBY");
   return (
     <form>
       <label>

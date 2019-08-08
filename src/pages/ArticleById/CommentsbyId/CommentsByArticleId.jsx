@@ -80,13 +80,14 @@ class CommentsByArticleId extends Component {
   };
 
   deleteComment = comment_id => {
-    console.log("delete clicked");
     api.deleteCommentById(comment_id).then(deleted => {
       if (deleted === 204) {
-        this.componentDidMount();
-        //         this.setState(currentState => {
-        // {comments: currentState.comments}
-        //         })
+        this.setState(currentState => {
+          const filterStateOnDelete = currentState.comments.filter(comment => {
+            return comment.comment_id !== comment_id;
+          });
+          return { comments: filterStateOnDelete };
+        });
       }
     });
   };

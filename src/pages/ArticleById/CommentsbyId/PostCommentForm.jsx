@@ -13,6 +13,7 @@ class PostCommentForm extends Component {
             type="text"
             value={this.state.body}
             onChange={this.handleChange}
+            required
           />
         </label>
         <button type="submit">Post</button>

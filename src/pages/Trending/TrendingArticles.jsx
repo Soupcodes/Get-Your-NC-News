@@ -4,21 +4,17 @@ import ArticleList from "../Homepage/ArticleList";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import styles from "./styles/TrendingArticles.module.css";
-import LoadingSpinner from "../../components/LoadingSpinner";
 
 class TrendingArticles extends Component {
   state = {
     sort_by: "comment_count",
     order: "desc",
-    articles: null,
     isLoading: true
   };
 
   render() {
-    const { articles, sort_by, isLoading } = this.state;
-    return isLoading ? (
-      <LoadingSpinner />
-    ) : (
+    const { sort_by, order } = this.state;
+    return (
       <>
         <div>
           <div className={styles.forms}>
@@ -29,7 +25,7 @@ class TrendingArticles extends Component {
               className="order"
             />
           </div>
-          <ArticleList articles={articles} />
+          <ArticleList sort_by={sort_by} order={order} />
         </div>
       </>
     );
@@ -45,17 +41,14 @@ class TrendingArticles extends Component {
     if (prevState.sort_by !== sort_by || prevState.order !== order) {
       this.fetchArticles();
     }
-
-    //IT IS POSSIBLE TO PASS DOWN PROPS FROM ROUTER BUT prevProps & prevState becomes invalid comparisons
-    // if (prevProps.sort_by === this.props.sort_by) {
-    //   this.fetchArticles();
-    // }
   }
 
   fetchArticles = () => {
-    api
-      .getArticles(this.state)
-      .then(articles => this.setState({ articles, isLoading: false }));
+    const { order, sort_by } = this.state;
+
+    api.getArticles({ order, sort_by }).then(articles => {
+      this.setState({ articles, isLoading: false });
+    });
   };
 
   sortArticles = sort_by => {
