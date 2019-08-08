@@ -20,14 +20,7 @@ class TrendingArticles extends Component {
   };
 
   render() {
-    const {
-      articles,
-      sort_by,
-      isLoading,
-      page,
-      errStatus,
-      errMsg
-    } = this.state;
+    const { articles, isLoading, page, errStatus, errMsg } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -36,12 +29,8 @@ class TrendingArticles extends Component {
       <>
         <div>
           <div className={styles.forms}>
-            <SortBy sortArticles={this.sortArticles} className="sort" />
-            <OrderBy
-              orderArticles={this.orderArticles}
-              sort_by={sort_by}
-              className="order"
-            />
+            <SortBy sortArticles={this.sortArticles} />
+            <OrderBy orderArticles={this.orderArticles} />
           </div>
           {articles.map(article => {
             return <ArticleCard article={article} key={article.article_id} />;

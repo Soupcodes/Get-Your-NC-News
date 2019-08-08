@@ -19,16 +19,8 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <div className={styles.container}>
-            <div className={styles.logo}>
-              <Link to="/">
-                <span
-                  className="iconify"
-                  data-icon="emojione-monotone:newspaper"
-                  data-inline="false"
-                />
-              </Link>
-            </div>
-            <Navbar className={styles.nav} user={this.state.user} />
+            
+            <Navbar user={this.state.user} />
           </div>
         </header>
 
@@ -45,7 +37,7 @@ class App extends React.Component {
         </Router>
         {/* </section> */}
 
-        <footer>
+        <footer id={styles.footer}>
           <p className={styles.nowidth}>
             NC News &copy; 2019 | Designed by: Alan Tong
           </p>

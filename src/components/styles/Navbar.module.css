@@ -14,26 +14,11 @@ a {
   color: black;
 }
 
-nav.highlightHover a:hover {
+a:hover {
   color: white;
 }
 
-/* .navLinks:hover {
-  color: white;
-  text-decoration: none;
-} */
-
-/* .navLinks::before {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 0%;
-  background-color: white;
-  position: relative;
-  top: 1;
-  transition: all ease-in-out 400ms;
+#logo {
+  font-size: 50px;
+  margin: 10px auto;
 }
-
-.navLinks:hover::before {
-  width: 100%;
-} */

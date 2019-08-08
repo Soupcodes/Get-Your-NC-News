@@ -1,15 +1,27 @@
-.subnav {
-  /* grid-template-areas: "coding cooking football"; */
+/* .subnav {
   width: 100%;
   margin: 0;
-}
+} */
 
 /* controls icon positioning within overall section */
 .subnav section {
   display: flex;
   justify-content: center;
-  margin: 20px auto;
+  margin: auto;
   font-size: 50px;
   background: red;
   width: 100%;
+  padding: 5px 0 0;
+}
+
+.forms {
+  display: flex;
+  width: 80vw;
+  padding: 0;
+  margin: 25px auto;
+  justify-content: flex-end;
+}
+
+div.minHeight {
+  height: 100vh;
 }

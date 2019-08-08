@@ -21,15 +21,7 @@ class TopicsPage extends Component {
   };
 
   render() {
-    const {
-      sort_by,
-      order,
-      articles,
-      topics,
-      isLoading,
-      errStatus,
-      errMsg
-    } = this.state;
+    const { articles, topics, isLoading, errStatus, errMsg } = this.state;
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
@@ -43,17 +35,21 @@ class TopicsPage extends Component {
             <TopicCard topics={topics} />
           </section>
         </nav>
-        {articles && (
-          <>
-            <div className="forms">
-              <SortBy sortArticles={this.sortArticles} order={order} />
-              <OrderBy orderArticles={this.orderArticles} sort_by={sort_by} />
-            </div>
-            {articles.map(article => {
-              return <ArticleCard article={article} key={article.article_id} />;
-            })}
-          </>
-        )}
+        <div className={styles.minHeight}>
+          {articles && (
+            <>
+              <div className={styles.forms}>
+                <SortBy sortArticles={this.sortArticles} />
+                <OrderBy orderArticles={this.orderArticles} />
+              </div>
+              {articles.map(article => {
+                return (
+                  <ArticleCard article={article} key={article.article_id} />
+                );
+              })}
+            </>
+          )}
+        </div>
       </>
     );
   }
@@ -85,7 +81,6 @@ class TopicsPage extends Component {
     }
 
     if (prevState.sort_by !== sort_by || prevState.order !== order) {
-      console.log("please don't do this too");
       this.fetchArticles();
     }
   }
