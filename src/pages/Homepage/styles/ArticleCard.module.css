@@ -1,21 +1,16 @@
 ul.container {
   list-style: none;
-  border: 2px solid black;
   overflow: hidden;
   font-size: 15px;
   width: 80%;
   margin: 0 auto 35px;
   padding: 0;
   background: rgb(50, 144, 182, 0.4);
+  border-radius: 30px;
 }
 
 li {
   display: grid;
-  /* grid-template-columns: minmax(min-content, 300px); */
-  /* grid-template-areas:
-    "topic title title title title"
-    "topic . . user ."
-    "topic comment_count votes votes posted"; */
   grid-template-areas:
     "topic"
     "title"
@@ -33,8 +28,6 @@ li {
   grid-area: topic;
   margin: 20px auto 0;
   padding: 0;
-
-  /* transform: rotate(-90deg); */
 }
 
 .title {

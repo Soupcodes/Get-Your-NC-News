@@ -1,0 +1,22 @@
+.commentBox {
+  width: 90%;
+  height: 10vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(50, 144, 182, 0.2);
+  width: 80%;
+  border-radius: 15px;
+}
+
+.post {
+  width: 80px;
+  margin: 10px auto 0;
+  padding: 0;
+  border-radius: 15px;
+}

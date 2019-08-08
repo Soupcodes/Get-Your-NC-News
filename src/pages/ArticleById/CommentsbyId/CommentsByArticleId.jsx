@@ -33,6 +33,7 @@ class CommentsByArticleId extends Component {
           postNewComment={this.postNewComment}
           username={username}
           article_id={id}
+         
         />
         <div className={styles.forms}>
           <SortComments sortComments={this.sortComments} />
