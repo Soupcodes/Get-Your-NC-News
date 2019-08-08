@@ -31,8 +31,9 @@ li {
 .topic {
   color: rgb(50, 144, 182);
   grid-area: topic;
-  margin: 20px auto 10px;
+  margin: 20px auto 0;
   padding: 0;
+
   /* transform: rotate(-90deg); */
 }
 
