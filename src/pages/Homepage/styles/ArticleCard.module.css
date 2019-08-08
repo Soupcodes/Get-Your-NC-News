@@ -4,7 +4,7 @@ ul.container {
   overflow: hidden;
   font-size: 15px;
   width: 80%;
-  margin: 0 auto 50px;
+  margin: 0 auto 35px;
   padding: 0;
   background: rgb(50, 144, 182, 0.4);
 }
@@ -24,7 +24,7 @@ li {
     "votes"
     "posted";
   text-align: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 

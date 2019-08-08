@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-// import ArticleList from "./ArticleList";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import ChangePage from "../../components/Pagination";
 import ArticleCard from "./ArticleCard";
+import styles from "./styles/ArticlesHomepage.module.css";
 
 class ArticlesHomepage extends Component {
   state = {
@@ -27,8 +27,10 @@ class ArticlesHomepage extends Component {
         {articles.map(article => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
-        <p>{page}</p>
-        <ChangePage page={page} browsePage={this.browsePage} />
+        <div className={styles.pagination}>
+          <p>{page}</p>
+          <ChangePage page={page} browsePage={this.browsePage} />
+        </div>
       </>
     );
   }
