@@ -1,7 +1,7 @@
 html,
 body {
   background: #d1e8e2;
-  font: 15px/1.5 Arial, Helvetica, sans-serif;
+  font: 15px/1.5 "Libre Caslon Text", serif, Helvetica, sans-serif;
   padding: 0;
   height: 100vh;
   display: grid;
