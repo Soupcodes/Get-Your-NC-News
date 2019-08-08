@@ -1,15 +1,10 @@
-/* .subnav {
-  width: 100%;
-  margin: 0;
-} */
-
 /* controls icon positioning within overall section */
 .subnav section {
   display: flex;
   justify-content: center;
   margin: auto;
   font-size: 50px;
-  background: red;
+  background: #116466;
   width: 100%;
   padding: 5px 0 0;
 }

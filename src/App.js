@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./App.module.css";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
@@ -19,7 +19,6 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <div className={styles.container}>
-            
             <Navbar user={this.state.user} />
           </div>
         </header>

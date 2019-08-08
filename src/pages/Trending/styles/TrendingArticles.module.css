@@ -5,12 +5,3 @@
   margin: 25px auto;
   justify-content: flex-end;
 }
-
-/* FOR MOBILE If the screen size is 600px wide or less */
-@media screen and (max-width: 600px) {
-  select {
-    /* font-size: 10px; */
-    /* min-height: 5vh; */
-    width: 80px;
-  }
-}

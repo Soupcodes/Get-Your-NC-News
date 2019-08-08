@@ -11,7 +11,7 @@ const SingleArticleView = ({ article }) => {
     <ul className={styles.article}>
       <li className={styles.articles}>
         <Link to={`/topics/${article.topic}`}>
-          <h1 className={styles.topic}>{article.topic}</h1>
+          <h1 className={styles.topic}>{article.topic.toUpperCase()}</h1>
         </Link>
 
         <h2 className={styles.title}>{article.title}</h2>

@@ -30,6 +30,10 @@ li {
   padding: 0;
 }
 
+.topic:hover {
+  color: white;
+}
+
 .title {
   grid-area: title;
   margin: 10px auto;

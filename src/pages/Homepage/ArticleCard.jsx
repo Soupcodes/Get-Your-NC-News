@@ -11,7 +11,9 @@ const ArticleCard = ({ article }) => {
   return (
     <ul className={styles.container}>
       <li>
-        <h1 className={styles.topic}>{article.topic.toUpperCase()}</h1>
+        <Link to={`/topics/${article.topic}`}>
+          <h1 className={styles.topic}>{article.topic.toUpperCase()}</h1>
+        </Link>
 
         <Link to={`/articles/${article.article_id}`}>
           <h2 className={styles.title}>{article.title} </h2>

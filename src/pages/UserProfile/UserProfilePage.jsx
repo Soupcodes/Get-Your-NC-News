@@ -41,7 +41,6 @@ class UserProfile extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("updating");
     const { username } = this.state.user;
     if (this.state.user !== prevState.user) {
       api.getArticles({ author: username }).then(articles => {
