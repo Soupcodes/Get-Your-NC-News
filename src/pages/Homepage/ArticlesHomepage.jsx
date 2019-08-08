@@ -21,11 +21,19 @@ class ArticlesHomepage extends Component {
     );
   }
 
+  componentDidMount() {
+    api.getArticles().then(articles => console.log(articles, "MOUNTING"));
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;
 
     if (prevState.page !== page) {
-      api.getArticles({ p: page });
+      api.getArticles({ p: page }).catch(err => {
+        this.setState(currentState => {
+          console.log("page does not exist");
+        });
+      });
     }
   }
 
