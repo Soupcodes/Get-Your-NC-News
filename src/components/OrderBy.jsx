@@ -5,7 +5,6 @@ const OrderBy = ({ orderArticles }) => {
     orderArticles(e.target.value);
   };
 
-  console.log("RENDERING ORDERBY");
   return (
     <form>
       <label>

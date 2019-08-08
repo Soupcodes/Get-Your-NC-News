@@ -14,13 +14,13 @@ const Topic = ({ topics }) => {
           />
         ) : topic.slug === "football" ? (
           <span
-            class="iconify"
+            className="iconify"
             data-icon="ion:ios-football"
             data-inline="false"
           />
         ) : topic.slug === "coding" ? (
           <span
-            class="iconify"
+            className="iconify"
             data-icon="emojione-monotone:desktop-computer"
             data-inline="false"
           />
@@ -33,7 +33,3 @@ const Topic = ({ topics }) => {
 };
 
 export default Topic;
-
-// {
-//   `${topic.slug[0].toUpperCase()}${topic.slug.slice(1)}`;
-// }
