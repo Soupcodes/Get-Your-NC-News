@@ -74,7 +74,7 @@ class TopicsPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sort_by, order, articles } = this.state;
+    const { sort_by, order } = this.state;
     const { topic } = this.props;
 
     if (prevProps.topic !== topic) {

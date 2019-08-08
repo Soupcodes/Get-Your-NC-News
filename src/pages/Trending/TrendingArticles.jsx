@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleList from "../Homepage/ArticleList";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import styles from "./styles/TrendingArticles.module.css";
