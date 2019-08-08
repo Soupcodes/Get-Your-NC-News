@@ -6,7 +6,7 @@ import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
 import SortArticles from "./pages/SortArticles/SortArticles";
 import TopicsList from "./pages/TopicsList/TopicsPage";
-import UserProfile from "./pages/UserProfile/UserProfile";
+import UserProfilePage from "./pages/UserProfile/UserProfilePage";
 import ArticleById from "./pages/ArticleById/ArticleByIdPage";
 import DefaultErrorPage from "./components/DefaultErrorPage";
 
@@ -42,7 +42,7 @@ class App extends React.Component {
           <ArticleById path="/articles/:article_id" user={this.state.user} />
           <TopicsList path="topics" />
           <TopicsList path="topics/:topic" />
-          <UserProfile path="/user/:username" />
+          <UserProfilePage path="/user/:username" />
           <DefaultErrorPage default />
         </Router>
         {/* </section> */}

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-import styles from "./styles/UserProfile.module.css";
+// import styles from "./styles/UserCard.module.css";
+import UserCard from "./UserCard";
 // import ArticleList from "../Homepage/ArticleList";
 
 class UserProfile extends Component {
@@ -23,15 +24,9 @@ class UserProfile extends Component {
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
 
     return (
-      <ul>
-        <li className={styles.centerItems}>
-          <h3>
-            <u>User: {user.name}</u>
-          </h3>
-          <img src={user.avatar_url} alt="profile-pic" />
-          <p>Username: {user.username}</p>
-        </li>
-      </ul>
+      <>
+        <UserCard user={user} />
+      </>
     );
   }
 
@@ -52,9 +47,9 @@ class UserProfile extends Component {
     const { username } = this.props;
     api
       .getUser(username)
-      .then(user =>
-        this.setState({ user, isLoading: false, author: user.username })
-      )
+      .then(user => {
+        this.setState({ user, isLoading: false, author: user.username });
+      })
       .catch(({ response }) =>
         this.setState({
           errStatus: response.status,
@@ -64,23 +59,23 @@ class UserProfile extends Component {
       );
   };
 
-  fetchArticles = () => {
-    api
-      .getArticles()
-      .then(articles =>
-        this.setState({
-          articles,
-          isLoading: false
-        })
-      )
-      .catch(({ response }) =>
-        this.setState({
-          errStatus: response.status,
-          errMsg: response.data.msg,
-          isLoading: false
-        })
-      );
-  };
+  // fetchArticles = () => {
+  //   api
+  //     .getArticles()
+  //     .then(articles =>
+  //       this.setState({
+  //         articles,
+  //         isLoading: false
+  //       })
+  //     )
+  //     .catch(({ response }) =>
+  //       this.setState({
+  //         errStatus: response.status,
+  //         errMsg: response.data.msg,
+  //         isLoading: false
+  //       })
+  //     );
+  // };
 }
 
 export default UserProfile;
