@@ -36,7 +36,14 @@ const ArticleCard = ({ article }) => {
           {article.comment_count}
         </p>
 
-        <p className={styles.posted}>Posted: {posted}</p>
+        <p className={styles.posted}>
+          <span
+            className="iconify"
+            data-icon="icomoon-free:calendar"
+            data-inline="false"
+          />{" "}
+          {posted}
+        </p>
 
         <Voter id={article_id} votes={votes} className={styles.votes} />
       </li>

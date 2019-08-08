@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-// import styles from "./styles/UserCard.module.css";
 import UserCard from "./UserCard";
-// import ArticleList from "../Homepage/ArticleList";
+import ArticleList from "../Homepage/ArticleList";
 
 class UserProfile extends Component {
   state = {
@@ -26,6 +25,7 @@ class UserProfile extends Component {
     return (
       <>
         <UserCard user={user} />
+        <ArticleList author={user.username} />
       </>
     );
   }
@@ -58,24 +58,6 @@ class UserProfile extends Component {
         })
       );
   };
-
-  // fetchArticles = () => {
-  //   api
-  //     .getArticles()
-  //     .then(articles =>
-  //       this.setState({
-  //         articles,
-  //         isLoading: false
-  //       })
-  //     )
-  //     .catch(({ response }) =>
-  //       this.setState({
-  //         errStatus: response.status,
-  //         errMsg: response.data.msg,
-  //         isLoading: false
-  //       })
-  //     );
-  // };
 }
 
 export default UserProfile;
