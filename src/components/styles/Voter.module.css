@@ -7,9 +7,9 @@ section {
   margin: auto;
 }
 
-p {
+section p {
   width: 100px;
-  margin: auto;
+  margin: 0 auto 2px;
   /* padding-left: 15px; */
 }
 
@@ -17,7 +17,7 @@ p {
   padding: 5px;
   border: auto;
   height: 30px;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px;
   /* width: 50px; */
 }
 
