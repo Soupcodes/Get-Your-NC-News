@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleList from "../Homepage/ArticleList";
 import styles from "./styles/TopicsPage.module.css";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import TopicCard from "./TopicCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
+import ArticleCard from "../Homepage/ArticleCard";
 
 class TopicsPage extends Component {
   state = {
@@ -49,7 +49,9 @@ class TopicsPage extends Component {
               <SortBy sortArticles={this.sortArticles} order={order} />
               <OrderBy orderArticles={this.orderArticles} sort_by={sort_by} />
             </div>
-            <ArticleList articles={articles} />
+            {articles.map(article => {
+              return <ArticleCard article={article} key={article.article_id} />;
+            })}
           </>
         )}
       </>
@@ -61,9 +63,9 @@ class TopicsPage extends Component {
     const { topic } = this.props;
     if (topic) {
       this.setState(currentState => {
-        currentState.topic = topic;
+        const { order, sort_by } = currentState;
         api
-          .getArticles(currentState)
+          .getArticles({ order, sort_by, topic })
           .then(articles => this.fetchTopics({ articles }));
       });
     } else {
@@ -72,7 +74,7 @@ class TopicsPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sort_by, order } = this.state;
+    const { sort_by, order, articles } = this.state;
     const { topic } = this.props;
 
     if (prevProps.topic !== topic) {
@@ -83,6 +85,7 @@ class TopicsPage extends Component {
     }
 
     if (prevState.sort_by !== sort_by || prevState.order !== order) {
+      console.log("please don't do this too");
       this.fetchArticles();
     }
   }
@@ -100,8 +103,9 @@ class TopicsPage extends Component {
   };
 
   fetchArticles = () => {
+    const { order, sort_by, topic } = this.state;
     return api
-      .getArticles(this.state)
+      .getArticles({ order, sort_by, topic })
       .then(articles => this.setState({ articles }))
       .catch(({ response }) =>
         this.setState({
