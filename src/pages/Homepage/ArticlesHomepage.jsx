@@ -20,7 +20,7 @@ class ArticlesHomepage extends Component {
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
-        
+
     return (
       <>
         <h1>Latest</h1>
@@ -36,21 +36,8 @@ class ArticlesHomepage extends Component {
   }
 
   componentDidMount() {
-    api.getArticles().then(articles => console.log(articles, "MOUNTING"));
+    this.fetchArticles();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { page } = this.state;
-
-    if (prevState.page !== page) {
-      api.getArticles({ p: page }).catch(err => {
-        this.setState(currentState => {
-          console.log("page does not exist");
-        });
-      });
-    }
-  }
-
 
   componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;

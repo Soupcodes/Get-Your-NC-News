@@ -8,7 +8,6 @@ const SortComments = ({ sortComments }) => {
   return (
     <form>
       <label>
-        Sort by:
         <select onChange={handleChange}>
           <option value="created_at">Date Posted</option>
           <option value="votes">Votes</option>
