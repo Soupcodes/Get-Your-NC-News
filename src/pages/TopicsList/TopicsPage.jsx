@@ -6,7 +6,7 @@ import OrderBy from "../../components/OrderBy";
 import TopicCard from "./TopicCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-import ArticleCard from "../Homepage/ArticleCard";
+import ArticleList from "../Homepage/ArticleList";
 
 class TopicsPage extends Component {
   state = {
@@ -20,9 +20,7 @@ class TopicsPage extends Component {
   };
 
   render() {
-
     const { articles, topics, isLoading, errStatus, errMsg } = this.state;
-
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
@@ -44,15 +42,10 @@ class TopicsPage extends Component {
                 <SortBy sortArticles={this.sortArticles} />
                 <OrderBy orderArticles={this.orderArticles} />
               </div>
-              {articles.map(article => {
-                return (
-                  <ArticleCard article={article} key={article.article_id} />
-                );
-              })}
+              <ArticleList articles={articles} />
             </>
           )}
         </div>
-        {/* <div className={styles.minHeight} /> */}
       </>
     );
   }
@@ -65,7 +58,14 @@ class TopicsPage extends Component {
         const { order, sort_by } = currentState;
         api
           .getArticles({ order, sort_by, topic })
-          .then(articles => this.fetchTopics({ articles }));
+          .then(articles => this.fetchTopics({ articles }))
+          .catch(({ response }) =>
+            this.setState({
+              errStatus: response.status,
+              errMsg: response.data.msg,
+              isLoading: false
+            })
+          );
       });
     } else {
       this.fetchTopics();
@@ -101,6 +101,7 @@ class TopicsPage extends Component {
   };
 
   fetchArticles = () => {
+    console.log("here??");
     const { order, sort_by, topic } = this.state;
     return api
       .getArticles({ order, sort_by, topic })

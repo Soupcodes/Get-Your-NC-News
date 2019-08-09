@@ -29,6 +29,10 @@ class ArticleById extends Component {
   }
 
   componentDidMount() {
+    this.fetchArticlesById();
+  }
+
+  fetchArticlesById = () => {
     const { article_id } = this.props;
     api
       .getArticleById(article_id)
@@ -40,7 +44,7 @@ class ArticleById extends Component {
           isLoading: false
         })
       );
-  }
+  };
 }
 
 export default ArticleById;

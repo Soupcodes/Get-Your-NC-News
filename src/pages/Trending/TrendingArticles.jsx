@@ -4,10 +4,9 @@ import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import styles from "./styles/TrendingArticles.module.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import ArticleCard from "../Homepage/ArticleCard";
 import ChangePage from "../../components/Pagination";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-
+import ArticleList from "../Homepage/ArticleList";
 
 class TrendingArticles extends Component {
   state = {
@@ -33,9 +32,7 @@ class TrendingArticles extends Component {
             <SortBy sortArticles={this.sortArticles} />
             <OrderBy orderArticles={this.orderArticles} />
           </div>
-          {articles.map(article => {
-            return <ArticleCard article={article} key={article.article_id} />;
-          })}
+          <ArticleList articles={articles} />
           <p>{page}</p>
           <div className={styles.pagination}>
             <ChangePage page={page} browsePage={this.browsePage} />
@@ -55,7 +52,6 @@ class TrendingArticles extends Component {
     if (prevState.sort_by !== sort_by || prevState.order !== order) {
       this.fetchArticles();
     }
-
 
     const { page } = this.state;
     if (prevState.page !== page) {
@@ -79,9 +75,18 @@ class TrendingArticles extends Component {
   fetchArticles = () => {
     const { order, sort_by } = this.state;
 
-    api.getArticles({ order, sort_by }).then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
+    api
+      .getArticles({ order, sort_by })
+      .then(articles => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 
   sortArticles = sort_by => {

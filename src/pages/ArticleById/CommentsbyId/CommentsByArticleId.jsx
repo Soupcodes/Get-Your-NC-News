@@ -64,9 +64,10 @@ class CommentsByArticleId extends Component {
   }
 
   fetchCommentsByArticleId = () => {
+    const { sort_by, order } = this.state;
     const { id } = this.props;
     return api
-      .getCommentsByArticleId(id, this.state)
+      .getCommentsByArticleId(id, sort_by, order)
       .then(comments => this.setState({ comments, isLoading: false }))
       .catch(({ response }) =>
         this.setState({
@@ -78,27 +79,47 @@ class CommentsByArticleId extends Component {
   };
 
   postNewComment = (article_id, comment) => {
-    return api.postCommentToArticle(article_id, comment).then(comment => {
-      this.setState(currentState => {
-        return {
-          comments: [comment, ...currentState.comments],
-          deleted: false
-        };
-      });
-    });
+    return api
+      .postCommentToArticle(article_id, comment)
+      .then(comment => {
+        this.setState(currentState => {
+          return {
+            comments: [comment, ...currentState.comments],
+            deleted: false
+          };
+        });
+      })
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 
   deleteComment = comment_id => {
-    api.deleteCommentById(comment_id).then(deleted => {
-      if (deleted === 204) {
-        this.setState(currentState => {
-          const filterStateOnDelete = currentState.comments.filter(comment => {
-            return comment.comment_id !== comment_id;
+    api
+      .deleteCommentById(comment_id)
+      .then(deleted => {
+        if (deleted === 204) {
+          this.setState(currentState => {
+            const filterStateOnDelete = currentState.comments.filter(
+              comment => {
+                return comment.comment_id !== comment_id;
+              }
+            );
+            return { comments: filterStateOnDelete, deleted: true };
           });
-          return { comments: filterStateOnDelete, deleted: true };
-        });
-      }
-    });
+        }
+      })
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 
   sortComments = sort_by => {

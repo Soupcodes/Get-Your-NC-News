@@ -7,22 +7,19 @@ class PostCommentForm extends Component {
   };
 
   render() {
+    const { body } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className={styles.container}>
         <label>
           <textarea
-            value={this.state.body}
+            value={body}
             onChange={this.handleChange}
-
             type="text"
-            name="comment"
-            form="usrform"
             className={styles.commentBox}
             required
-          >
-            Enter text here...
-          </textarea>
+          />
         </label>
+        <p>{500 - body.length} characters remaining</p>
         <button className={styles.post} type="submit">
           Post
         </button>
@@ -31,7 +28,11 @@ class PostCommentForm extends Component {
   }
 
   handleChange = e => {
-    this.setState({ body: e.target.value });
+    if (e.target.value.length <= 500) {
+      this.setState({
+        body: e.target.value
+      });
+    }
   };
 
   handleSubmit = e => {

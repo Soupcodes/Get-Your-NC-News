@@ -3,8 +3,8 @@ import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import ChangePage from "../../components/Pagination";
-import ArticleCard from "./ArticleCard";
 import styles from "./styles/ArticlesHomepage.module.css";
+import ArticleList from "./ArticleList";
 
 class ArticlesHomepage extends Component {
   state = {
@@ -24,9 +24,7 @@ class ArticlesHomepage extends Component {
     return (
       <>
         <h1>Latest</h1>
-        {articles.map(article => {
-          return <ArticleCard article={article} key={article.article_id} />;
-        })}
+        <ArticleList articles={articles} />
         <div className={styles.pagination}>
           <p>{page}</p>
           <ChangePage page={page} browsePage={this.browsePage} />
@@ -44,26 +42,14 @@ class ArticlesHomepage extends Component {
     // const { sort_by, order } = prevState;
 
     if (prevState.page !== page) {
-      api
-        .getArticles({ p: page })
-        .then(articles => {
-          this.setState(currentState => {
-            return { articles };
-          });
-        })
-        .catch(({ response }) =>
-          this.setState({
-            errStatus: response.status,
-            errMsg: response.data.msg,
-            isLoading: false
-          })
-        );
+      this.fetchArticles();
     }
   }
 
   fetchArticles = () => {
+    const { page } = this.state;
     api
-      .getArticles()
+      .getArticles({ p: page })
       .then(articles =>
         this.setState({
           articles,
@@ -79,9 +65,9 @@ class ArticlesHomepage extends Component {
       );
   };
 
-  browsePage = inc_votes => {
+  browsePage = inc_page => {
     this.setState(currentState => {
-      return { page: currentState.page + inc_votes };
+      return { page: currentState.page + inc_page };
     });
   };
 }

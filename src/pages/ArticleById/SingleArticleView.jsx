@@ -15,8 +15,10 @@ const SingleArticleView = ({ article }) => {
         </Link>
 
         <h2 className={styles.title}>{article.title}</h2>
+
         <p className={styles.body}>{article.body}</p>
-        <p className={styles.user}>
+
+        <div className={styles.user}>
           <span
             className="iconify"
             data-icon="fa-solid:user-alt"
@@ -31,7 +33,8 @@ const SingleArticleView = ({ article }) => {
             />{" "}
             {article.comment_count}
           </p>
-        </p>
+        </div>
+
         <p className={styles.posted}>
           {" "}
           <span
@@ -41,6 +44,7 @@ const SingleArticleView = ({ article }) => {
           />{" "}
           {posted}
         </p>
+
         <Voter
           id={article.article_id}
           votes={article.votes}

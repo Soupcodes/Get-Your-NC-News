@@ -29,7 +29,7 @@ class App extends React.Component {
           <TrendingArticles path="/trending" sort_by={"comment_count"} />
           <ArticleById path="/articles/:article_id" user={this.state.user} />
           <TopicsList path="topics" />
-          <TopicsList path="topics/:topic" />
+          <TopicsList path="topics" />
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage default />
         </Router>
