@@ -32,7 +32,7 @@ class App extends React.Component {
           <ArticleById path="/articles/:article_id" user={user} />
           <TopicsPage path="/topics/*" />
           <UserProfilePage path="/user/:username" />
-          <DefaultErrorPage default />
+          <DefaultErrorPage errStatus={404} errMsg={"Page not found"} default />
         </Router>
 
         <div id={styles.footer}>

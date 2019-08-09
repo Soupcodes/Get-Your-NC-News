@@ -37,6 +37,7 @@ class PostCommentForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state.body);
     const { postNewComment, username, article_id } = this.props;
     postNewComment(article_id, { username, ...this.state }).then(() => {
       this.setState({ body: "" });
