@@ -31,11 +31,11 @@ class TopicsPage extends Component {
       //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
       <>
         <nav className={styles.subnav}>
-          <section className={styles.minHeight}>
+          <section>
             <TopicCard topics={topics} />
           </section>
         </nav>
-        <div className={styles.minHeight}>
+        <div>
           {articles && (
             <>
               <div className={styles.forms}>
@@ -50,6 +50,7 @@ class TopicsPage extends Component {
             </>
           )}
         </div>
+        {/* <div className={styles.minHeight} /> */}
       </>
     );
   }

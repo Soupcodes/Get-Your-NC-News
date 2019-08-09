@@ -15,13 +15,10 @@ div {
   text-align: center;
   margin: 0;
   padding: 0;
-  /* min-height: 100%; */
 }
 
 .container {
   display: grid;
-  /* flex-wrap: wrap; */
-  /* justify-content: space-between; */
   align-items: center;
   overflow: hidden;
   background: #116466;
@@ -58,4 +55,13 @@ a {
 
 a:hover {
   color: white;
+}
+
+p,
+a,
+u,
+h1,
+h2,
+span {
+  color: rgb(20, 20, 20);
 }
