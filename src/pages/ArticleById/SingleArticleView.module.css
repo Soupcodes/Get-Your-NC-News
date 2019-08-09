@@ -10,48 +10,34 @@
 }
 
 li.articles {
-  grid-template-areas:
-    "topic"
-    "title"
-    "body"
-    "user"
-    "comment_count"
-    "votes"
-    "posted";
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 0 40px;
 }
 
 .topic {
   color: rgb(50, 144, 182);
-  grid-area: topic;
   margin: 20px auto;
   padding: 0;
-  /* transform: rotate(-90deg); */
 }
 
 .title {
-  grid-area: title;
   margin: auto;
   padding: 0;
   width: 70%;
 }
 
 .body {
-  grid-area: body;
   margin: 20px auto;
   padding: 0;
 }
 
 .user {
-  grid-area: user;
   margin: 0 auto 10px;
   padding: 0;
 }
 
 .comment_count {
-  grid-area: comment_count;
   margin: 10px auto;
   padding: 0;
 }
@@ -61,7 +47,6 @@ li section {
 }
 
 .posted {
-  grid-area: posted;
   margin: 10px auto 20px;
   padding: 0;
   width: 100%;

@@ -23,15 +23,23 @@ const SingleArticleView = ({ article }) => {
             data-inline="false"
           />
           <Link to={`/user/${article.author}`}>{article.author}</Link>
+          <p className={styles.comment_count}>
+            <span
+              className="iconify"
+              data-icon="fa-regular:comment"
+              data-inline="false"
+            />{" "}
+            {article.comment_count}
+          </p>
         </p>
-        <p className={styles.posted}>Posted: {posted}</p>
-        <p className={styles.comment_count}>
+        <p className={styles.posted}>
+          {" "}
           <span
             className="iconify"
-            data-icon="fa-regular:comment"
+            data-icon="icomoon-free:calendar"
             data-inline="false"
           />{" "}
-          {article.comment_count}
+          {posted}
         </p>
         <Voter
           id={article.article_id}
