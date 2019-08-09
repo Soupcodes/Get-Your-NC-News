@@ -15,11 +15,13 @@ class App extends React.Component {
   };
 
   render() {
+    const { user } = this.state;
+
     return (
       <div className={styles.App}>
         <header>
           <div className={styles.container}>
-            <Navbar user={this.state.user} />
+            <Navbar user={user} />
           </div>
         </header>
 
@@ -27,7 +29,7 @@ class App extends React.Component {
           <ArticlesHomepage path="/" />
           <ArticlesHomepage path="/articles" />
           <TrendingArticles path="/trending" sort_by={"comment_count"} />
-          <ArticleById path="/articles/:article_id" user={this.state.user} />
+          <ArticleById path="/articles/:article_id" user={user} />
           <TopicsPage path="/topics/*" />
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage default />

@@ -8,9 +8,7 @@ import ArticleList from "../Homepage/ArticleList";
 class UserProfile extends Component {
   state = {
     articles: null,
-    comments: null,
     user: null,
-    author: null,
     isLoading: true,
     errStatus: null,
     errMsg: null
@@ -31,37 +29,26 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    console.log("1 - mounting");
     this.fetchUser();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(
-      prevProps.username,
-      "4 updating with username passed through props (link)"
-    );
-    const { username } = this.state.user;
-    if (this.state.user !== prevState.user) {
-      console.log(prevProps.username, "5 state changes");
-      this.fetchArticles({ author: username });
-    }
-
-    if (prevProps.username !== this.props.username) {
-      this.fetchArticles({ author: this.props.username });
+  componentDidUpdate(prevProps) {
+    const { username } = this.props;
+    if (prevProps.username !== username) {
+      this.fetchUser();
     }
   }
 
   fetchUser = () => {
     const { username } = this.props;
-    console.log(
-      username,
-      "<---- 2 - fetching user based on username passed through props"
-    );
     api
       .getUser(username)
       .then(user => {
-        console.log(user, "3 - setting state with this user");
         this.setState({ user, isLoading: false, author: username });
+        return this.fetchArticles();
+      })
+      .then(articles => {
+        this.setState({ articles });
       })
       .catch(({ response }) =>
         this.setState({
@@ -72,16 +59,14 @@ class UserProfile extends Component {
       );
   };
 
-  fetchArticles = author => {
-    console.log("6 fetching articles by author?");
+  fetchArticles = () => {
+    const { username } = this.props;
     api
-      .getArticles(author)
+      .getArticles({ author: username })
       .then(articles => {
-        console.log(articles, "What is here?");
         this.setState({
           articles,
-          isLoading: false,
-          author: author.author
+          isLoading: false
         });
       })
       .catch(({ response }) =>
