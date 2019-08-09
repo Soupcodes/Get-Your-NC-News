@@ -1,33 +1,28 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import styles from "./styles/TopicsPage.module.css";
-import SortBy from "../../components/SortBy";
-import OrderBy from "../../components/OrderBy";
 import TopicCard from "./TopicCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-import ArticleList from "../Homepage/ArticleList";
+import ArticlesByTopic from "./ArticlesByTopic";
+import { Router } from "@reach/router";
 
 class TopicsPage extends Component {
   state = {
     topics: null,
-    topic: "",
     isLoading: true,
-    order: "desc",
-    sort_by: "created_at",
     errStatus: null,
     errMsg: null
   };
 
   render() {
-    const { articles, topics, isLoading, errStatus, errMsg } = this.state;
+    const { topics, isLoading, errStatus, errMsg } = this.state;
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
 
     return (
-      //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
       <>
         <nav className={styles.subnav}>
           <section>
@@ -35,90 +30,21 @@ class TopicsPage extends Component {
           </section>
         </nav>
 
-        <div>
-          {articles && (
-            <>
-              <div className={styles.forms}>
-                <SortBy sortArticles={this.sortArticles} />
-                <OrderBy orderArticles={this.orderArticles} />
-              </div>
-              <ArticleList articles={articles} />
-            </>
-          )}
-        </div>
+        <Router>
+          <ArticlesByTopic path="/:topic" />
+        </Router>
       </>
     );
   }
 
-  //mounts a blank page with topics to select from initially
   componentDidMount() {
-    const { topic } = this.props;
-    if (topic) {
-      this.setState(currentState => {
-        const { order, sort_by } = currentState;
-        api
-          .getArticles({ order, sort_by, topic })
-          .then(articles => this.fetchTopics({ articles }))
-          .catch(({ response }) =>
-            this.setState({
-              errStatus: response.status,
-              errMsg: response.data.msg,
-              isLoading: false
-            })
-          );
-      });
-    } else {
-      this.fetchTopics();
-    }
+    this.fetchTopics();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { sort_by, order } = this.state;
-    const { topic } = this.props;
-
-    if (prevProps.topic !== topic) {
-      this.setState(currentState => {
-        currentState.topic = topic;
-        this.fetchArticles();
-      });
-    }
-
-    if (prevState.sort_by !== sort_by || prevState.order !== order) {
-      this.fetchArticles();
-    }
-  }
-
-  sortArticles = sort_by => {
-    this.setState({ sort_by });
-  };
-
-  orderArticles = order => {
-    this.setState({ order });
-  };
-
-  selectTopic = topic => {
-    this.setState({ topic });
-  };
-
-  fetchArticles = () => {
-    console.log("here??");
-    const { order, sort_by, topic } = this.state;
-    return api
-      .getArticles({ order, sort_by, topic })
-      .then(articles => this.setState({ articles }))
-      .catch(({ response }) =>
-        this.setState({
-          errStatus: response.status,
-          errMsg: response.data.msg,
-          isLoading: false
-        })
-      );
-  };
-
-  fetchTopics = articles => {
+  fetchTopics = () => {
     return api
       .getTopics()
-      .then(topics => this.setState({ topics, isLoading: false, ...articles }))
+      .then(topics => this.setState({ topics, isLoading: false }))
       .catch(({ response }) =>
         this.setState({
           errStatus: response.status,
