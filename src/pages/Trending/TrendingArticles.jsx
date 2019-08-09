@@ -36,7 +36,9 @@ class TrendingArticles extends Component {
             return <ArticleCard article={article} key={article.article_id} />;
           })}
           <p>{page}</p>
-          <ChangePage page={page} browsePage={this.browsePage} />
+          <div className={styles.pagination}>
+            <ChangePage page={page} browsePage={this.browsePage} />
+          </div>
         </div>
       </>
     );

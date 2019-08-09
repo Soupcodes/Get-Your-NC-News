@@ -23,7 +23,6 @@ class App extends React.Component {
           </div>
         </header>
 
-        {/* <section className={styles.minHeight}> */}
         <Router>
           <ArticlesHomepage path="/" />
           <ArticlesHomepage path="/articles" />
@@ -34,7 +33,6 @@ class App extends React.Component {
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage default />
         </Router>
-        {/* </section> */}
 
         <footer id={styles.footer}>
           <p className={styles.nowidth}>

@@ -8,6 +8,10 @@
   border-radius: 15px;
 }
 
+ul {
+  background: rgb(50, 144, 182, 0.2);
+}
+
 li.commentList {
   grid-template-areas:
     "author"
@@ -17,7 +21,7 @@ li.commentList {
   text-align: center;
   margin: 0;
   padding: 0;
-  background: rgb(50, 144, 182, 0.2);
+  /* background: rgb(50, 144, 182, 0.2); */
 }
 
 .author {
