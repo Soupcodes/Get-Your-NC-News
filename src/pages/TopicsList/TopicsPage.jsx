@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import * as api from "../../api";
-import ArticleList from "../Homepage/ArticleList";
 import styles from "./styles/TopicsPage.module.css";
 import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import TopicCard from "./TopicCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
+import ArticleCard from "../Homepage/ArticleCard";
 
 class TopicsPage extends Component {
   state = {
@@ -20,15 +20,9 @@ class TopicsPage extends Component {
   };
 
   render() {
-    const {
-      sort_by,
-      order,
-      topics,
-      isLoading,
-      errStatus,
-      errMsg,
-      topic
-    } = this.state;
+
+    const { articles, topics, isLoading, errStatus, errMsg } = this.state;
+
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
@@ -38,19 +32,27 @@ class TopicsPage extends Component {
       //renders topics sub-navigation once fetched, then sorting features and articles after a topic is selected
       <>
         <nav className={styles.subnav}>
-          <section className={styles.minHeight}>
+          <section>
             <TopicCard topics={topics} />
           </section>
         </nav>
-        <div className="forms">
-          <SortBy sortArticles={this.sortArticles} order={order} />
-          <OrderBy orderArticles={this.orderArticles} sort_by={sort_by} />
+
+        <div>
+          {articles && (
+            <>
+              <div className={styles.forms}>
+                <SortBy sortArticles={this.sortArticles} />
+                <OrderBy orderArticles={this.orderArticles} />
+              </div>
+              {articles.map(article => {
+                return (
+                  <ArticleCard article={article} key={article.article_id} />
+                );
+              })}
+            </>
+          )}
         </div>
-        {topic ? (
-          <ArticleList sort_by={sort_by} order={order} topic={topic} />
-        ) : (
-          <></>
-        )}
+        {/* <div className={styles.minHeight} /> */}
       </>
     );
   }
@@ -60,9 +62,9 @@ class TopicsPage extends Component {
     const { topic } = this.props;
     if (topic) {
       this.setState(currentState => {
-        currentState.topic = topic;
+        const { order, sort_by } = currentState;
         api
-          .getArticles(currentState)
+          .getArticles({ order, sort_by, topic })
           .then(articles => this.fetchTopics({ articles }));
       });
     } else {
@@ -99,8 +101,9 @@ class TopicsPage extends Component {
   };
 
   fetchArticles = () => {
+    const { order, sort_by, topic } = this.state;
     return api
-      .getArticles(this.state)
+      .getArticles({ order, sort_by, topic })
       .then(articles => this.setState({ articles }))
       .catch(({ response }) =>
         this.setState({

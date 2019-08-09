@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./styles/PostCommentForm.module.css";
 
 class PostCommentForm extends Component {
   state = {
@@ -7,16 +8,24 @@ class PostCommentForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.container}>
         <label>
-          <input
-            type="text"
+          <textarea
             value={this.state.body}
             onChange={this.handleChange}
+
+            type="text"
+            name="comment"
+            form="usrform"
+            className={styles.commentBox}
             required
-          />
+          >
+            Enter text here...
+          </textarea>
         </label>
-        <button type="submit">Post</button>
+        <button className={styles.post} type="submit">
+          Post
+        </button>
       </form>
     );
   }

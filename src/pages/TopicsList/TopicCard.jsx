@@ -32,4 +32,5 @@ const TopicCard = ({ topics }) => {
   ));
 };
 
-export default TopicCard;
+export default Topic;
+

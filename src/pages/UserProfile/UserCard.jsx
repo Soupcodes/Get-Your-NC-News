@@ -2,15 +2,23 @@ import React from "react";
 import styles from "./styles/UserCard.module.css";
 
 const UserCard = ({ user }) => {
-  console.log("in usercard");
   return (
-    <ul>
+    <ul className={styles.userCard}>
       <li className={styles.centerItems}>
-        <h3>
-          <u>User: {user.name}</u>
+        <h3 className={styles.name}>
+          <u>
+            {" "}
+            <span
+              className="iconify"
+              data-icon="fa-solid:user-alt"
+              data-inline="false"
+              id={styles.marginRight}
+            />{" "}
+            {user.name}
+          </u>
         </h3>
         <img src={user.avatar_url} alt="profile-pic" />
-        <p>Username: {user.username}</p>
+        <p className={styles.username}>Username: {user.username}</p>
       </li>
     </ul>
   );

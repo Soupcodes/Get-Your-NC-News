@@ -4,7 +4,6 @@ const request = axios.create({
 });
 
 export const getArticles = async query => {
-  console.log(query, "here")
   const { data } = await request.get("/articles", { params: query });
   return data.articles;
 };

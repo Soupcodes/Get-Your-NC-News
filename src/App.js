@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./App.module.css";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
 import TrendingArticles from "./pages/Trending/TrendingArticles";
@@ -19,16 +19,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <div className={styles.container}>
-            <div className={styles.logo}>
-              <Link to="/">
-                <span
-                  className="iconify"
-                  data-icon="emojione-monotone:newspaper"
-                  data-inline="false"
-                />
-              </Link>
-            </div>
-            <Navbar className={styles.nav} user={this.state.user} />
+            <Navbar user={this.state.user} />
           </div>
         </header>
 
@@ -43,7 +34,7 @@ class App extends React.Component {
           <DefaultErrorPage default />
         </Router>
 
-        <footer>
+        <footer id={styles.footer}>
           <p className={styles.nowidth}>
             NC News &copy; 2019 | Designed by: Alan Tong
           </p>

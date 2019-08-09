@@ -6,7 +6,7 @@ import PostCommentBox from "./PostCommentForm";
 import DefaultErrorPage from "../../../components/DefaultErrorPage";
 import SortComments from "./SortComments";
 import OrderComments from "./OrderComments";
-import "./styles/CommentsByArticleId.module.css";
+import styles from "./styles/CommentsByArticleId.module.css";
 
 class CommentsByArticleId extends Component {
   state = {
@@ -34,7 +34,7 @@ class CommentsByArticleId extends Component {
           username={username}
           article_id={id}
         />
-        <div className="forms">
+        <div className={styles.forms}>
           <SortComments sortComments={this.sortComments} />
           <OrderComments orderComments={this.orderComments} />
         </div>

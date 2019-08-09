@@ -3,7 +3,8 @@ import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import UserCard from "./UserCard";
-import ArticleList from "../Homepage/ArticleList";
+import ArticleCard from "../Homepage/ArticleCard";
+
 
 class UserProfile extends Component {
   state = {
@@ -17,7 +18,7 @@ class UserProfile extends Component {
   };
 
   render() {
-    const { user, isLoading, errStatus, errMsg } = this.state;
+    const { user, isLoading, errStatus, errMsg, articles } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -25,7 +26,13 @@ class UserProfile extends Component {
     return (
       <>
         <UserCard user={user} />
-        <ArticleList author={user.username} />
+        {articles ? (
+          articles.map(article => {
+            return <ArticleCard article={article} key={article.article_id} />;
+          })
+        ) : (
+          <></>
+        )}
       </>
     );
   }
@@ -47,9 +54,31 @@ class UserProfile extends Component {
     const { username } = this.props;
     api
       .getUser(username)
-      .then(user => {
-        this.setState({ user, isLoading: false, author: user.username });
-      })
+      .then(user =>
+        this.setState({ user, isLoading: false, author: user.username })
+      )
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
+  };
+
+  fetchArticles = () => {
+    api
+      .getArticles()
+      .then(articles =>
+        this.setState({
+          articles,
+          isLoading: false
+        })
+      )
+//       .then(user => {
+//         this.setState({ user, isLoading: false, author: user.username });
+//       })
+
       .catch(({ response }) =>
         this.setState({
           errStatus: response.status,
