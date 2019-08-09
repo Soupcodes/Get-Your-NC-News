@@ -39,7 +39,6 @@ class ArticlesHomepage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { page } = this.state;
-    // const { sort_by, order } = prevState;
 
     if (prevState.page !== page) {
       this.fetchArticles();
