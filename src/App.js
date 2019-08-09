@@ -16,8 +16,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={styles.App}>
+        <header>
           <div className={styles.container}>
             <Navbar user={this.state.user} />
           </div>
@@ -34,11 +34,11 @@ class App extends React.Component {
           <DefaultErrorPage default />
         </Router>
 
-        <footer id={styles.footer}>
-          <p className={styles.nowidth}>
-            NC News &copy; 2019 | Designed by: Alan Tong
-          </p>
-        </footer>
+        <div id={styles.footer}>
+          <footer className={styles.nowidth}>
+            <p>NC News &copy; 2019 | Designed by: Alan Tong</p>
+          </footer>
+        </div>
       </div>
     );
   }

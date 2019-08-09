@@ -5,3 +5,7 @@
   margin: 20px auto 10px;
   justify-content: flex-end;
 }
+
+.deleted {
+  margin: 0 0 40px;
+}

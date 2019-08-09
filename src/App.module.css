@@ -4,11 +4,10 @@ body {
   font: 15px/1.5 "Libre Caslon Text", serif, Helvetica, sans-serif;
   padding: 0;
   height: 100vh;
-  display: grid;
-  grid-template-areas:
-    "header"
-    "body"
-    "footer";
+}
+
+.App {
+  height: 100vh;
 }
 
 div {
@@ -34,16 +33,16 @@ a {
 }
 
 #footer {
-  grid-area: footer;
+  /* grid-area: footer; */
   display: flex;
-  width: 100%;
+  flex-direction: column-reverse;
   height: 80px;
   background: #116466;
+  align-content: center;
 }
 
 .nowidth {
-  width: 100%;
-  margin: auto;
+  margin: auto 0;
 }
 
 a:hover {

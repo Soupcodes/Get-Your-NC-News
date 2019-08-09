@@ -15,11 +15,12 @@ class CommentsByArticleId extends Component {
     errStatus: null,
     errMsg: null,
     sort_by: "created_at",
-    order: "desc"
+    order: "desc",
+    deleted: false
   };
 
   render() {
-    const { comments, isLoading, errStatus, errMsg } = this.state;
+    const { comments, isLoading, errStatus, errMsg, deleted } = this.state;
     const { username, id } = this.props;
     //NOTE: can't use article_id as it the key on request is 'id'
 
@@ -38,6 +39,11 @@ class CommentsByArticleId extends Component {
           <SortComments sortComments={this.sortComments} />
           <OrderComments orderComments={this.orderComments} />
         </div>
+        {deleted ? (
+          <p className={styles.deleted}>Your comment has been deleted !</p>
+        ) : (
+          <></>
+        )}
         <CommentList
           comments={comments}
           username={username}
@@ -74,7 +80,10 @@ class CommentsByArticleId extends Component {
   postNewComment = (article_id, comment) => {
     return api.postCommentToArticle(article_id, comment).then(comment => {
       this.setState(currentState => {
-        return { comments: [comment, ...currentState.comments] };
+        return {
+          comments: [comment, ...currentState.comments],
+          deleted: false
+        };
       });
     });
   };
@@ -86,7 +95,7 @@ class CommentsByArticleId extends Component {
           const filterStateOnDelete = currentState.comments.filter(comment => {
             return comment.comment_id !== comment_id;
           });
-          return { comments: filterStateOnDelete };
+          return { comments: filterStateOnDelete, deleted: true };
         });
       }
     });
