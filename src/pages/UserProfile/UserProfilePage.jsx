@@ -5,6 +5,7 @@ import DefaultErrorPage from "../../components/DefaultErrorPage";
 import UserCard from "./UserCard";
 import ArticleCard from "../Homepage/ArticleCard";
 
+
 class UserProfile extends Component {
   state = {
     articles: null,
@@ -74,6 +75,10 @@ class UserProfile extends Component {
           isLoading: false
         })
       )
+//       .then(user => {
+//         this.setState({ user, isLoading: false, author: user.username });
+//       })
+
       .catch(({ response }) =>
         this.setState({
           errStatus: response.status,

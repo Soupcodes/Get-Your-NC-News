@@ -39,7 +39,6 @@ const ArticleCard = ({ article }) => {
         </p>
 
         <p className={styles.posted}>
-          {" "}
           <span
             className="iconify"
             data-icon="icomoon-free:calendar"

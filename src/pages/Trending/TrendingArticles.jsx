@@ -8,6 +8,7 @@ import ArticleCard from "../Homepage/ArticleCard";
 import ChangePage from "../../components/Pagination";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 
+
 class TrendingArticles extends Component {
   state = {
     sort_by: "comment_count",
@@ -55,6 +56,7 @@ class TrendingArticles extends Component {
       this.fetchArticles();
     }
 
+
     const { page } = this.state;
     if (prevState.page !== page) {
       api
@@ -75,9 +77,11 @@ class TrendingArticles extends Component {
   }
 
   fetchArticles = () => {
-    api
-      .getArticles(this.state)
-      .then(articles => this.setState({ articles, isLoading: false }));
+    const { order, sort_by } = this.state;
+
+    api.getArticles({ order, sort_by }).then(articles => {
+      this.setState({ articles, isLoading: false });
+    });
   };
 
   sortArticles = sort_by => {

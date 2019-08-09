@@ -13,7 +13,6 @@ class TopicsPage extends Component {
     topics: null,
     topic: "",
     isLoading: true,
-    articles: null,
     order: "desc",
     sort_by: "created_at",
     errStatus: null,
@@ -21,7 +20,9 @@ class TopicsPage extends Component {
   };
 
   render() {
+
     const { articles, topics, isLoading, errStatus, errMsg } = this.state;
+
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
@@ -35,6 +36,7 @@ class TopicsPage extends Component {
             <TopicCard topics={topics} />
           </section>
         </nav>
+
         <div>
           {articles && (
             <>

@@ -13,6 +13,7 @@ class PostCommentForm extends Component {
           <textarea
             value={this.state.body}
             onChange={this.handleChange}
+
             type="text"
             name="comment"
             form="usrform"

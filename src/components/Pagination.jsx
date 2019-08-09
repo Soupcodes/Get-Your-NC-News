@@ -14,4 +14,5 @@ const ChangePage = ({ page, browsePage }) => {
     </>
   );
 };
+
 export default ChangePage;
