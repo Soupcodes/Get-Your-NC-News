@@ -4,11 +4,11 @@ import SortBy from "../../components/SortBy";
 import OrderBy from "../../components/OrderBy";
 import styles from "./styles/TrendingArticles.module.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import ChangePage from "../../components/Pagination";
+import PageChanger from "../../components/PageChanger";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import ArticleList from "../Homepage/ArticleList";
 
-class TrendingArticles extends Component {
+class TrendingArticlesPage extends Component {
   state = {
     sort_by: "comment_count",
     order: "desc",
@@ -35,7 +35,7 @@ class TrendingArticles extends Component {
           <ArticleList articles={articles} />
           <p>{page}</p>
           <div className={styles.pagination}>
-            <ChangePage page={page} browsePage={this.browsePage} />
+            <PageChanger page={page} browsePage={this.browsePage} />
           </div>
         </div>
       </>
@@ -97,11 +97,11 @@ class TrendingArticles extends Component {
     this.setState({ order });
   };
 
-  browsePage = inc_votes => {
+  browsePage = inc_page => {
     this.setState(currentState => {
-      return { page: currentState.page + inc_votes };
+      return { page: currentState.page + inc_page };
     });
   };
 }
 
-export default TrendingArticles;
+export default TrendingArticlesPage;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
-import ChangePage from "../../components/Pagination";
+import PageChanger from "../../components/PageChanger";
 import styles from "./styles/ArticlesHomepage.module.css";
 import ArticleList from "./ArticleList";
 
@@ -27,7 +27,7 @@ class ArticlesHomepage extends Component {
         <ArticleList articles={articles} />
         <div className={styles.pagination}>
           <p>{page}</p>
-          <ChangePage page={page} browsePage={this.browsePage} />
+          <PageChanger page={page} browsePage={this.browsePage} />
         </div>
       </>
     );

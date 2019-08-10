@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../../api";
 import styles from "./styles/TopicsPage.module.css";
-import TopicCard from "./TopicCard";
+import TopicsList from "./TopicsList";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 import ArticlesByTopic from "./ArticlesByTopic";
@@ -26,7 +26,7 @@ class TopicsPage extends Component {
       <>
         <nav className={styles.subnav}>
           <section>
-            <TopicCard topics={topics} />
+            <TopicsList topics={topics} />
           </section>
         </nav>
 

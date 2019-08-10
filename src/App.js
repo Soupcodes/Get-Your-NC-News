@@ -3,10 +3,10 @@ import styles from "./App.module.css";
 import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import ArticlesHomepage from "./pages/Homepage/ArticlesHomepage";
-import TrendingArticles from "./pages/Trending/TrendingArticles";
+import TrendingArticlesPage from "./pages/Trending/TrendingArticlesPage";
 import TopicsPage from "./pages/TopicsList/TopicsPage";
 import UserProfilePage from "./pages/UserProfile/UserProfilePage";
-import ArticleById from "./pages/ArticleById/ArticleByIdPage";
+import SingleArticlePage from "./pages/ArticleById/SingleArticlePage";
 import DefaultErrorPage from "./components/DefaultErrorPage";
 
 class App extends React.Component {
@@ -28,8 +28,8 @@ class App extends React.Component {
         <Router>
           <ArticlesHomepage path="/" />
           <ArticlesHomepage path="/articles" />
-          <TrendingArticles path="/trending" sort_by={"comment_count"} />
-          <ArticleById path="/articles/:article_id" user={user} />
+          <TrendingArticlesPage path="/trending" sort_by={"comment_count"} />
+          <SingleArticlePage path="/articles/:article_id" user={user} />
           <TopicsPage path="/topics/*" />
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage errStatus={404} errMsg={"Page not found"} default />

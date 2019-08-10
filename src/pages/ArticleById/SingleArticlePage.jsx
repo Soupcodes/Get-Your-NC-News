@@ -5,7 +5,7 @@ import SingleArticleView from "./SingleArticleView";
 import CommentsByArticleId from "./CommentsbyId/CommentsByArticleId";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 
-class ArticleById extends Component {
+class SingleArticlePage extends Component {
   state = {
     article: null,
     isLoading: true,
@@ -47,4 +47,4 @@ class ArticleById extends Component {
   };
 }
 
-export default ArticleById;
+export default SingleArticlePage;
