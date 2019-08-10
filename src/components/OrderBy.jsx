@@ -1,8 +1,11 @@
 import React from "react";
 
-const OrderBy = ({ orderArticles }) => {
+const OrderBy = props => {
+  const { orderArticles, orderComments } = props;
+
   const handleChange = e => {
-    orderArticles(e.target.value);
+    let order = e.target.value;
+    orderArticles ? orderArticles(order) : orderComments(order);
   };
 
   return (

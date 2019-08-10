@@ -27,6 +27,7 @@ export const getTopics = async query => {
 };
 
 export const getCommentsByArticleId = async (id, query) => {
+  console.log(query, "hey");
   const { data } = await request.get(`/articles/${id}/comments`, {
     params: query
   });

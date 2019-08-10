@@ -4,8 +4,8 @@ import CommentList from "./CommentList";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import PostCommentBox from "./PostCommentForm";
 import DefaultErrorPage from "../../../components/DefaultErrorPage";
-import SortComments from "./SortComments";
-import OrderComments from "./OrderComments";
+import SortBy from "../../../components/SortBy";
+import OrderBy from "../../../components/OrderBy";
 import styles from "./styles/CommentsByArticleId.module.css";
 
 class CommentsByArticleId extends Component {
@@ -16,11 +16,19 @@ class CommentsByArticleId extends Component {
     errMsg: null,
     sort_by: "created_at",
     order: "desc",
-    deleted: false
+    deleted: false,
+    filterSort: "comments"
   };
 
   render() {
-    const { comments, isLoading, errStatus, errMsg, deleted } = this.state;
+    const {
+      comments,
+      isLoading,
+      errStatus,
+      errMsg,
+      deleted,
+      filterSort
+    } = this.state;
     const { username, id } = this.props;
     //NOTE: can't use article_id as it the key on request is 'id'
 
@@ -36,8 +44,8 @@ class CommentsByArticleId extends Component {
           article_id={id}
         />
         <div className={styles.forms}>
-          <SortComments sortComments={this.sortComments} />
-          <OrderComments orderComments={this.orderComments} />
+          <SortBy sortComments={this.sortComments} filterSort={filterSort} />
+          <OrderBy orderComments={this.orderComments} />
         </div>
         {deleted ? (
           <p className={styles.deleted}>Your comment has been deleted !</p>
@@ -67,7 +75,7 @@ class CommentsByArticleId extends Component {
     const { sort_by, order } = this.state;
     const { id } = this.props;
     return api
-      .getCommentsByArticleId(id, sort_by, order)
+      .getCommentsByArticleId(id, { sort_by, order })
       .then(comments => this.setState({ comments, isLoading: false }))
       .catch(({ response }) =>
         this.setState({
