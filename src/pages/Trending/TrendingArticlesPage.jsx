@@ -58,9 +58,7 @@ class TrendingArticlesPage extends Component {
       api
         .getArticles({ p: page })
         .then(articles => {
-          this.setState(currentState => {
-            return { articles };
-          });
+          this.setState({ articles });
         })
         .catch(({ response }) =>
           this.setState({

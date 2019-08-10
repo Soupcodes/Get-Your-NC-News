@@ -7,6 +7,7 @@ import { Link } from "@reach/router";
 const CommentCard = ({ comment, username, deleteComment }) => {
   const timeStamp = new Date(comment.created_at);
   const posted = timeStamp.toLocaleDateString();
+  const type = "comments";
   return (
     <ul className={styles.comments}>
       <li className={styles.commentList}>
@@ -19,6 +20,7 @@ const CommentCard = ({ comment, username, deleteComment }) => {
           votes={comment.votes}
           comment_id={comment.comment_id}
           className={styles.votes}
+          type={type}
         />
         <p className={styles.posted}>
           {" "}

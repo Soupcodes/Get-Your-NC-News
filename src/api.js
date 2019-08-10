@@ -27,7 +27,6 @@ export const getTopics = async query => {
 };
 
 export const getCommentsByArticleId = async (id, query) => {
-  console.log(query, "hey");
   const { data } = await request.get(`/articles/${id}/comments`, {
     params: query
   });
@@ -44,12 +43,7 @@ export const deleteCommentById = async comment_id => {
   return status;
 };
 
-export const patchArticleById = async (article_id, inc_votes) => {
-  const { data } = await request.patch(`/articles/${article_id}`, inc_votes);
-  return data.article;
-};
-
-export const patchCommentById = async (comment_id, inc_votes) => {
-  const { data } = await request.patch(`/comments/${comment_id}`, inc_votes);
-  return data.comment;
+export const patchVotesByTypeAndId = async (id, inc_votes, type) => {
+  const { data } = await request.patch(`/${type}/${id}`, inc_votes);
+  return type === "articles" ? data.article : data.comment;
 };

@@ -42,38 +42,29 @@ class Voter extends Component {
   }
 
   handleClick = inc_votes => {
-    const { id, comment_id } = this.props;
+    const { id, comment_id, type } = this.props;
     if (id) {
-      api
-        .patchArticleById(id, { inc_votes })
-        .then(() =>
-          this.setState(currentState => {
-            return { changeVotes: currentState.changeVotes + inc_votes };
-          })
-        )
-        .catch(({ response }) =>
-          this.setState({
-            errStatus: response.status,
-            errMsg: response.data.msg,
-            isLoading: false
-          })
-        );
+      this.updateVotes(id, inc_votes, type);
     } else if (comment_id) {
-      api
-        .patchCommentById(comment_id, { inc_votes })
-        .then(() =>
-          this.setState(currentState => {
-            return { changeVotes: currentState.changeVotes + inc_votes };
-          })
-        )
-        .catch(({ response }) =>
-          this.setState({
-            errStatus: response.status,
-            errMsg: response.data.msg,
-            isLoading: false
-          })
-        );
+      this.updateVotes(comment_id, inc_votes, type);
     }
+  };
+
+  updateVotes = (id, inc_votes, type) => {
+    api
+      .patchVotesByTypeAndId(id, { inc_votes }, type)
+      .then(() =>
+        this.setState(currentState => {
+          return { changeVotes: currentState.changeVotes + inc_votes };
+        })
+      )
+      .catch(({ response }) =>
+        this.setState({
+          errStatus: response.status,
+          errMsg: response.data.msg,
+          isLoading: false
+        })
+      );
   };
 }
 

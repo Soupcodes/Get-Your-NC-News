@@ -6,6 +6,7 @@ import Voter from "../../components/Voter";
 const SingleArticleView = ({ article }) => {
   const timeStamp = new Date(article.created_at);
   const posted = timeStamp.toLocaleDateString();
+  const type = "articles";
 
   return (
     <ul className={styles.article}>
@@ -49,6 +50,7 @@ const SingleArticleView = ({ article }) => {
           id={article.article_id}
           votes={article.votes}
           className={styles.votes}
+          type={type}
         />
       </li>
     </ul>

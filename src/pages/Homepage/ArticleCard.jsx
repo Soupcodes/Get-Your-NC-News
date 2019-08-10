@@ -7,6 +7,7 @@ const ArticleCard = ({ article }) => {
   const timeStamp = new Date(article.created_at);
   const posted = timeStamp.toLocaleDateString();
   const { article_id, votes } = article;
+  const type = "articles";
 
   return (
     <ul className={styles.container}>
@@ -47,7 +48,7 @@ const ArticleCard = ({ article }) => {
           {posted}
         </p>
 
-        <Voter id={article_id} votes={votes} />
+        <Voter id={article_id} votes={votes} type={type} />
       </li>
     </ul>
   );
