@@ -4,13 +4,13 @@ Get Your NC News is a front end user webview built using the NC News backend api
 
 All relevant links are listed below:
 
-Back-end:
-GitHub repository: https://github.com/Soupcodes/Alan-NC-News
-Hosted version: https://alansoup-nc-news.herokuapp.com
+Back-end:  
+[GitHub repository](https://github.com/Soupcodes/Alan-NC-News)  
+[Hosted version](https://alansoup-nc-news.herokuapp.com)
 
-Front-end:
-GitHub repository: https://github.com/Soupcodes/Get-Your-NC-News
-Hosted version:
+Front-end:  
+[GitHub repository](https://github.com/Soupcodes/Get-Your-NC-News)  
+[Hosted version](https://alan-nc-news.netlify.com/)
 
 ## Getting Started
 
@@ -26,16 +26,26 @@ From your terminal, clone the repository to your desired folder
 # cd Get-Your-NC-News
 ```
 
+## 1a - Create your own repository
+
+From your terminal, clone the repository to your desired folder
+
+```bash
+# git clone https://github.com/Soupcodes/Alan-NC-News.git
+
+# cd Alan-NC-News
+```
+
 ### 1a - Create your own repository
 
-On GitHub create your own public\* repository but **DO NOT to initialise with a README or .gitignore as these already included.**
+On GitHub create your own repository but **DO NOT to initialise with a README or .gitignore as these already included.**
 
 Next, link your local copy to your newly created GitHub repo. Use the following terminal commands, making sure to check the git remotes with each step (`git remote -v`):
 
 ```bash
 git remote remove origin
 
-# This prevents you from pushing to the original Alan-NC-News repo.
+# This prevents you from pushing to the original Get-Your-NC-News repo.
 ```
 
 ```bash
@@ -50,204 +60,94 @@ git remote add origin <YOUR-GITHUB-URL>
 
 Once in your editor, the dependencies required for testing and deployment are listed in the **`package.json`** file.
 
-To first initialise your repo, run:
-
-```bash
-# npm init -y
-```
-
-Run the following command in your CLI to then install **all** dependencies:
+Run the following command in your CLI to install all dependencies needed to run and deploy the site:
 
 ```bash
 # npm i
 ```
 
-To install each dependency manually:
-
-```bash
-# npm i < package name >
-```
-
-Tag a -d to the end of the install to identify which packages are mandatory for deployment. These will be listed under the 'dependencies'.
-
-```bash
-# npm i < package name > -d
-```
+Minimum version are:
 
 ```javascript
 "dependencies": {
-    "express": "^4.17.1",
-    "knex": "^0.19.0",
-    "pg": "^7.11.0"
-  },
+  "@reach/router": "^1.2.1",
+  "axios": "^0.19.0",
+  "g": "^2.0.1",
+  "netlify-cli": "^2.12.0",
+  "react": "^16.8.6",
+  "react-dom": "^16.8.6",
+  "react-loader-spinner": "^3.1.2",
+  "react-scripts": "3.0.1"
+},
 ```
 
-Tagging an uppercase -D indicates that the package is a devDependency and is required to utilise and run existing tests in the repo.
+### 3 - Run locally
+
+With all dependencies installed, you can run `npm start` in the terminal to see a locally hosted version of the site.
+
+### 4 - Deploy a draft build URL
+
+To also test how the site will function in a live user setting, carry out the following steps in your terminal:
 
 ```bash
-# npm i <package name> -D
+# npm run build
 ```
 
-```javascript
-"devDependencies": {
-    "chai": "^4.2.0",
-    "chai-sorted": "^0.2.0",
-    "mocha": "^6.1.4",
-    "nodemon": "^1.19.1",
-    "supertest": "^4.0.2"
-  }
-```
-
-### 2a - Create your knexfile
-
-You will need to create a `knexfile.js` in the root folder of the repo to enable knex to populate your database in step 3.
-
-In the knexfile, paste the following code to enable testing and subsequent deployment.
-
-`For Linux users` make sure to **CHANGE YOUR USERNAME AND PASSWORD FIELDS** to match your psql (postgres) credentials.
-
-`For mac users` these fields can be deleted.
-
-```javascript
-const { DB_URL } = process.env;
-const ENV = process.env.NODE_ENV || "development";
-
-const baseConfig = {
-  client: "pg",
-  migrations: {
-    directory: "./db/migrations"
-  },
-  seeds: {
-    directory: "./db/seeds"
-  }
-};
-
-const customConfig = {
-  development: {
-    connection: {
-      database: "nc_news",
-      username: "YOUR USERNAME",
-      password: "YOUR PASSWORD"
-    }
-  },
-  test: {
-    connection: {
-      database: "nc_news_test",
-      username: "YOUR USERNAME",
-      password: "YOUR PASSWORD"
-    }
-  },
-  production: {
-    connection: `${DB_URL}?ssl=true`
-  }
-};
-
-module.exports = { ...customConfig[ENV], ...baseConfig };
-```
-
-## 3 - Seeding the database
-
-To enable testing, you will need to create your databases and seed the associated schemas. All relevant scripts have been programmed into the repo and the following commands must be run in the command line interface in **the same order as demonstrated below**
-
-1. `npm run setup-dbs` will generate your development and test databases. This **MUST** be run before any tests take place or there will be no databases to create schemas in and subsequent seeding will fail.
-
-1. `npm run seed` will populate your schemas with the data provided. 'Rollback' and 'migrate latest' functionality has been built into this command to ensure a clean slate is generated for testing.
-
-## 4 - Running the tests
-
-Once your environment is setup, you can access the `/spec/app.spec.js` file to visualise the tests that have been developed to test this api.
-
-To carry out automated testing, run the script:
+This script bundles your code into files readable by most modern browsers. **Don't change any files in the build folder**.
 
 ```bash
-# npm test (or `npm t` for short)
+# netlify deploy
 ```
 
-This will cycle through every test written for every endpoint.
+- You will need to authorise Netlify with GitHub and select create and configure a new site.
+- Input a site name (this is the URL users will see when the site is fully deployed)
+- Connect to your account
+- When asked for the deploy path, enter `./build` to point to the build directory in the repository.
 
-The purpose of each test is to ensure the methods that have been developed for each endpoint of this api have been rigourously tested for frailties.
+This will deploy a **draft version** to a url displayed in your terminal - `eg. https://5c13ab16055b9be1725868e6--your-site-name.netlify.com`, Ctrl + click the link to view and test how the site will function in a live setting.
 
-A dummy request is sent to the server to test its functionality and to ensure it returns the expected response as a result.
+### 5 - Deploy to a production build URL
 
-Considerations such as:
-
-- GET requests to the server should return relevant data to the Client
-- POST requests to the server will insert a new item into the database
-- PATCH requests will update existing entries in the database
-- DELETE requests remove an item from the database in its entirety and all corresponding entities associated with the parent data.
-- INVALID endpoints or input data will throw an error message to the Client
-
-For example:
-
-GET `/api/topics` is a valid endpoint so the test ensures it returns an object in a format similar to the below to the Client:
-
-```javascript
-{
-  topics: [
-    { slug: "mitch", description: "The man, the Mitch, the legend" },
-    { slug: "cats", description: "Not dogs" },
-    { slug: "paper", description: "what books are made of" }
-  ];
-}
-```
-
-GET `/api/categories` is not a valid endpoint so the test ensures it returns an error message similar to the below
-
-```javascript
-{ status: 404, msg: 'Route not found' }
-```
-
-_A list of all the available endpoints can be found in the endpoints.json file_
-
-## 5 - Deployment
-
-This app was hosted on `Heroku` but there are various hosting platforms that can be utilised to run your code. They must, however, need to be able to handle database integration through Postgres for this particular api.
-
-### 1. Install Heroku CLI
-
-`On mac`
+Once you are happy with a draft test of the site, a production version can be deployed. Run the following commands:
 
 ```bash
-brew tap heroku/brew && brew install heroku
+# netlify deploy --prod
 ```
 
-`On Linux`
+Specify `./build` as the path again to finish deployment.
+
+### 6 - Redeployment
+
+Should you make amends to the code and want to update live visuals, git push to your copy of the GitHub repository and run through steps 4 & 5 again with the following commands:
 
 ```bash
-sudo snap install --classic heroku
+# npm run build
 ```
-
-### 2. Create a Heroku app
 
 ```bash
-- heroku login
-- heroku create <your-app-name>
+# netlify deploy
 ```
-
-This will add a new remote that you can push your code to which you can check by entering:
 
 ```bash
-git remote -v
+# netlify deploy --prod
 ```
 
-Push your code to Heroku once it shows up in your git remotes. Any subsequent changes can also be pushed up.
+You do not need to respecify the site name as reployment will overwrite information already attached to that URL, just ensure `./build` is entered when deploy path shows up in terminal for both draft and production deployments.
 
-```bash
-git push heroku master
-```
+### 7 - Debugging Netlify
 
-### 3. Seed deployed database
+Any issues with deployment on Netlify can be debugged by Ctrl + clicking on the `Logs` url that appears in the terminal upon initial deployment.
 
-All heroku's custom settings have already configured in the repo so to populate the production database, run the following command built into the package.json:
+### 8 - Useful docs
 
-```bash
-npm run seed:prod
-```
+Should you run into any issues utilising pre-requisite dependencies, or deployment, the official documentation provides useful insight as a guideline as well as for troubleshooting purposes. See below.
 
-### 4. Debugging Heroku
+[react](https://reactjs.org/docs/hello-world.html)
 
-Any issues with deployment on Heroku can be debugged using
+[@reach/router](https://reach.tech/router)
 
-```bash
-heroku logs --tail
-```
+[axios](https://www.npmjs.com/package/axios)
+
+[netlify-cli](https://www.netlify.com/docs/)
+
+#### Author: Alan Tong
