@@ -15,3 +15,7 @@
   margin: 25px auto;
   justify-content: flex-end;
 }
+
+.pagination {
+  margin: 0 auto 30px;
+}

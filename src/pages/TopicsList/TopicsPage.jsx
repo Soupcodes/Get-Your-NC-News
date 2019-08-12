@@ -29,11 +29,9 @@ class TopicsPage extends Component {
             <TopicsList topics={topics} />
           </section>
         </nav>
-        <div className={styles.route}>
-          <Router>
-            <ArticlesByTopic path="/:topic" />
-          </Router>
-        </div>
+        <Router>
+          <ArticlesByTopic path="/:topic" />
+        </Router>
       </>
     );
   }

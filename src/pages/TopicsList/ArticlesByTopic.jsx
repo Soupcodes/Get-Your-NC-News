@@ -6,6 +6,7 @@ import ArticleList from "../Homepage/ArticleList";
 import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
+import PageChanger from "../../components/PageChanger";
 
 class ArticlesByTopic extends Component {
   state = {
@@ -14,11 +15,11 @@ class ArticlesByTopic extends Component {
     errStatus: null,
     errMsg: null,
     order: "desc",
-    sort_by: "created_at"
+    page: 1
   };
 
   render() {
-    const { articles, isLoading, errMsg, errStatus } = this.state;
+    const { articles, isLoading, errMsg, errStatus, page } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -30,6 +31,10 @@ class ArticlesByTopic extends Component {
           <OrderBy orderArticles={this.orderArticles} />
         </div>
         <ArticleList articles={articles} />
+        <div className={styles.pagination}>
+          <p>{page}</p>
+          <PageChanger page={page} browsePage={this.browsePage} />
+        </div>
       </>
     );
   }
@@ -40,22 +45,23 @@ class ArticlesByTopic extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props;
-    const { order, sort_by } = this.state;
+    const { order, sort_by, page } = this.state;
     if (
       prevProps.topic !== topic ||
       prevState.order !== order ||
-      prevState.sort_by !== sort_by
+      prevState.sort_by !== sort_by ||
+      prevState.page !== page
     ) {
       this.fetchArticles();
     }
   }
 
   fetchArticles = () => {
-    const { order, sort_by } = this.state;
+    const { order, sort_by, page } = this.state;
     const { topic } = this.props;
 
     return api
-      .getArticles({ order, sort_by, topic })
+      .getArticles({ order, sort_by, topic, p: page })
       .then(articles => {
         this.setState({ articles, isLoading: false });
       })
@@ -74,6 +80,12 @@ class ArticlesByTopic extends Component {
 
   orderArticles = order => {
     this.setState({ order });
+  };
+
+  browsePage = inc_page => {
+    this.setState(currentState => {
+      return { page: currentState.page + inc_page, isLoading: true };
+    });
   };
 }
 
