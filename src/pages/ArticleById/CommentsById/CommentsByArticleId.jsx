@@ -30,7 +30,6 @@ class CommentsByArticleId extends Component {
       filterSort
     } = this.state;
     const { username, id } = this.props;
-    //NOTE: can't use article_id as it the key on request is 'id'
 
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)

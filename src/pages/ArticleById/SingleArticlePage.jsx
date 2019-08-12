@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as api from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import SingleArticleView from "./SingleArticleView";
-import CommentsByArticleId from "./CommentsbyId/CommentsByArticleId";
+import CommentsByArticleId from "./CommentsById/CommentsByArticleId";
 import DefaultErrorPage from "../../components/DefaultErrorPage";
 
 class SingleArticlePage extends Component {

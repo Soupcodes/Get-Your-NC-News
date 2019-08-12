@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChangePage = ({ page, browsePage }) => {
+const PageChanger = ({ page, browsePage }) => {
   const handleClick = inc_page => {
     browsePage(inc_page);
   };
@@ -15,4 +15,4 @@ const ChangePage = ({ page, browsePage }) => {
   );
 };
 
-export default ChangePage;
+export default PageChanger;
