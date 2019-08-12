@@ -30,6 +30,7 @@ class App extends React.Component {
           <ArticlesHomepage path="/articles" />
           <TrendingArticlesPage path="/trending" sort_by={"comment_count"} />
           <SingleArticlePage path="/articles/:article_id" user={user} />
+          <TopicsPage path="/topics" />
           <TopicsPage path="/topics/*" />
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage errStatus={404} errMsg={"Page not found"} default />
