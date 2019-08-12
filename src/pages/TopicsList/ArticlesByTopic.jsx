@@ -41,10 +41,11 @@ class ArticlesByTopic extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props;
     const { order, sort_by } = this.state;
-    if (prevProps.topic !== topic) {
-      this.fetchArticles();
-    }
-    if (prevState.order !== order || prevState.sort_by !== sort_by) {
+    if (
+      prevProps.topic !== topic ||
+      prevState.order !== order ||
+      prevState.sort_by !== sort_by
+    ) {
       this.fetchArticles();
     }
   }

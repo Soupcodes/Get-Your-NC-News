@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <div className={styles.App}>
         <header>
-          <div className={styles.container}>
+          <div className={styles.mainNav}>
             <Navbar user={user} />
           </div>
         </header>
@@ -30,14 +30,14 @@ class App extends React.Component {
           <ArticlesHomepage path="/articles" />
           <TrendingArticlesPage path="/trending" sort_by={"comment_count"} />
           <SingleArticlePage path="/articles/:article_id" user={user} />
-          <TopicsPage path="/topics" />
+          {/* <TopicsPage path="/topics" /> */}
           <TopicsPage path="/topics/*" />
           <UserProfilePage path="/user/:username" />
           <DefaultErrorPage errStatus={404} errMsg={"Page not found"} default />
         </Router>
 
         <div id={styles.footer}>
-          <footer className={styles.nowidth}>
+          <footer className={styles.center}>
             <p>NC News &copy; 2019 | Designed by: Alan Tong</p>
           </footer>
         </div>

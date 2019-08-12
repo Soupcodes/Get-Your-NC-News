@@ -44,11 +44,8 @@ class UserProfile extends Component {
     return api
       .getUser(username)
       .then(user => {
-        this.setState({ user, isLoading: false, author: username });
+        this.setState({ user, isLoading: false });
         return this.fetchArticles();
-      })
-      .then(articles => {
-        this.setState({ articles });
       })
       .catch(({ response }) =>
         this.setState({
