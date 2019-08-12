@@ -4,8 +4,6 @@ import styles from "./SingleArticleView.module.css";
 import Voter from "../../components/Voter";
 
 const SingleArticleView = ({ article }) => {
-  const timeStamp = new Date(article.created_at);
-  const posted = timeStamp.toLocaleDateString();
   const type = "articles";
 
   return (
@@ -43,7 +41,7 @@ const SingleArticleView = ({ article }) => {
             data-icon="icomoon-free:calendar"
             data-inline="false"
           />{" "}
-          {posted}
+          {new Date(article.created_at).toLocaleDateString()}
         </p>
 
         <Voter

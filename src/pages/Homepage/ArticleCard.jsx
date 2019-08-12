@@ -4,8 +4,6 @@ import Voter from "../../components/Voter";
 import styles from "./styles/ArticleCard.module.css";
 
 const ArticleCard = ({ article }) => {
-  const timeStamp = new Date(article.created_at);
-  const posted = timeStamp.toLocaleDateString();
   const { article_id, votes } = article;
   const type = "articles";
 
@@ -45,7 +43,7 @@ const ArticleCard = ({ article }) => {
             data-icon="icomoon-free:calendar"
             data-inline="false"
           />{" "}
-          {posted}
+          {new Date(article.created_at).toLocaleDateString()}
         </p>
 
         <Voter id={article_id} votes={votes} type={type} />

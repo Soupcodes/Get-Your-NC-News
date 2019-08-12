@@ -1,10 +1,9 @@
 import React from "react";
-import styles from "./styles/DefaultErrorPage.module.css";
 
 const DefaultErrorPage = ({ errStatus, errMsg }) => {
   if (errStatus && errMsg) {
     return (
-      <div className={styles.center}>
+      <div>
         <h1>
           <u>ERROR {errStatus}</u>
         </h1>

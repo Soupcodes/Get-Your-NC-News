@@ -15,11 +15,12 @@ class ArticlesByTopic extends Component {
     errStatus: null,
     errMsg: null,
     order: "desc",
-    page: 1
+    page: 1,
+    limit: false
   };
 
   render() {
-    const { articles, isLoading, errMsg, errStatus, page } = this.state;
+    const { articles, isLoading, errMsg, errStatus, page, limit } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -33,7 +34,7 @@ class ArticlesByTopic extends Component {
         <ArticleList articles={articles} />
         <div className={styles.pagination}>
           <p>{page}</p>
-          <PageChanger page={page} browsePage={this.browsePage} />
+          <PageChanger page={page} browsePage={this.browsePage} limit={limit} />
         </div>
       </>
     );
@@ -52,6 +53,12 @@ class ArticlesByTopic extends Component {
       prevState.sort_by !== sort_by ||
       prevState.page !== page
     ) {
+      this.setState(
+        currentState => console.log(currentState.articles.length)
+        // currentState.articles.length < 10
+        //   ? { isLoading: true, limit: true }
+        //   : { isLoading: true, limit: false }
+      );
       this.fetchArticles();
     }
   }
@@ -63,7 +70,11 @@ class ArticlesByTopic extends Component {
     return api
       .getArticles({ order, sort_by, topic, p: page })
       .then(articles => {
-        this.setState({ articles, isLoading: false });
+        this.setState(currentState => {
+          return articles.length < 10
+            ? { isLoading: false, limit: true, articles }
+            : { isLoading: false, limit: false, articles };
+        });
       })
       .catch(({ response }) =>
         this.setState({
