@@ -23,14 +23,22 @@ class Voter extends Component {
     return (
       <section>
         <p>Votes: {votes + changeVotes}</p>
-        <button className={styles.buttons} onClick={() => this.handleClick(1)}>
+        <button
+          className={styles.buttons}
+          onClick={() => this.handleClick(1)}
+          disabled={changeVotes >= 1}
+        >
           <span
             className="iconify"
             data-icon="noto:red-heart"
             data-inline="false"
           />
         </button>
-        <button className={styles.buttons} onClick={() => this.handleClick(-1)}>
+        <button
+          className={styles.buttons}
+          onClick={() => this.handleClick(-1)}
+          disabled={changeVotes <= -1}
+        >
           <span
             className="iconify"
             data-icon="noto:broken-heart"

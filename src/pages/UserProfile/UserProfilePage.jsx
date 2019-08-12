@@ -41,7 +41,7 @@ class UserProfile extends Component {
 
   fetchUser = () => {
     const { username } = this.props;
-    api
+    return api
       .getUser(username)
       .then(user => {
         this.setState({ user, isLoading: false, author: username });

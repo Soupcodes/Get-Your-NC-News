@@ -26,7 +26,7 @@ class App extends React.Component {
         </header>
 
         <Router>
-          <ArticlesHomepage path="/" />
+          <ArticlesHomepage path="/*" />
           <ArticlesHomepage path="/articles" />
           <TrendingArticlesPage path="/trending" sort_by={"comment_count"} />
           <SingleArticlePage path="/articles/:article_id" user={user} />

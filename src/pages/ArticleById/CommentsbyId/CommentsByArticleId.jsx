@@ -107,7 +107,7 @@ class CommentsByArticleId extends Component {
   };
 
   deleteComment = comment_id => {
-    api
+    return api
       .deleteCommentById(comment_id)
       .then(deleted => {
         if (deleted === 204) {

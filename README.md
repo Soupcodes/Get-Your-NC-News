@@ -1,68 +1,253 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GET YOUR NC NEWS
 
-## Available Scripts
+Get Your NC News is a front end user webview built using the NC News backend api.
 
-In the project directory, you can run:
+All relevant links are listed below:
 
-### `npm start`
+Back-end:
+GitHub repository: https://github.com/Soupcodes/Alan-NC-News
+Hosted version: https://alansoup-nc-news.herokuapp.com
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Front-end:
+GitHub repository: https://github.com/Soupcodes/Get-Your-NC-News
+Hosted version:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+The following steps outline how to get the front-end repository running on your local machine for visual purposes, as well as providing a general guideline for live deployment.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 1 - Clone the repository
 
-### `npm run build`
+From your terminal, clone the repository to your desired folder
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# git clone https://github.com/Soupcodes/Get-Your-NC-News.git
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# cd Get-Your-NC-News
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1a - Create your own repository
 
-### `npm run eject`
+On GitHub create your own public\* repository but **DO NOT to initialise with a README or .gitignore as these already included.**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Next, link your local copy to your newly created GitHub repo. Use the following terminal commands, making sure to check the git remotes with each step (`git remote -v`):
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git remote remove origin
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# This prevents you from pushing to the original Alan-NC-News repo.
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+git remote add origin <YOUR-GITHUB-URL>
 
-## Learn More
+# This will add your GitHub location to your local git repository.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Confirm this by checking the new git remote.
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 2 - Setting up your environment and prerequisites
 
-### Code Splitting
+Once in your editor, the dependencies required for testing and deployment are listed in the **`package.json`** file.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+To first initialise your repo, run:
 
-### Analyzing the Bundle Size
+```bash
+# npm init -y
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Run the following command in your CLI to then install **all** dependencies:
 
-### Making a Progressive Web App
+```bash
+# npm i
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+To install each dependency manually:
 
-### Advanced Configuration
+```bash
+# npm i < package name >
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Tag a -d to the end of the install to identify which packages are mandatory for deployment. These will be listed under the 'dependencies'.
 
-### Deployment
+```bash
+# npm i < package name > -d
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```javascript
+"dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.19.0",
+    "pg": "^7.11.0"
+  },
+```
 
-### `npm run build` fails to minify
+Tagging an uppercase -D indicates that the package is a devDependency and is required to utilise and run existing tests in the repo.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+# npm i <package name> -D
+```
+
+```javascript
+"devDependencies": {
+    "chai": "^4.2.0",
+    "chai-sorted": "^0.2.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  }
+```
+
+### 2a - Create your knexfile
+
+You will need to create a `knexfile.js` in the root folder of the repo to enable knex to populate your database in step 3.
+
+In the knexfile, paste the following code to enable testing and subsequent deployment.
+
+`For Linux users` make sure to **CHANGE YOUR USERNAME AND PASSWORD FIELDS** to match your psql (postgres) credentials.
+
+`For mac users` these fields can be deleted.
+
+```javascript
+const { DB_URL } = process.env;
+const ENV = process.env.NODE_ENV || "development";
+
+const baseConfig = {
+  client: "pg",
+  migrations: {
+    directory: "./db/migrations"
+  },
+  seeds: {
+    directory: "./db/seeds"
+  }
+};
+
+const customConfig = {
+  development: {
+    connection: {
+      database: "nc_news",
+      username: "YOUR USERNAME",
+      password: "YOUR PASSWORD"
+    }
+  },
+  test: {
+    connection: {
+      database: "nc_news_test",
+      username: "YOUR USERNAME",
+      password: "YOUR PASSWORD"
+    }
+  },
+  production: {
+    connection: `${DB_URL}?ssl=true`
+  }
+};
+
+module.exports = { ...customConfig[ENV], ...baseConfig };
+```
+
+## 3 - Seeding the database
+
+To enable testing, you will need to create your databases and seed the associated schemas. All relevant scripts have been programmed into the repo and the following commands must be run in the command line interface in **the same order as demonstrated below**
+
+1. `npm run setup-dbs` will generate your development and test databases. This **MUST** be run before any tests take place or there will be no databases to create schemas in and subsequent seeding will fail.
+
+1. `npm run seed` will populate your schemas with the data provided. 'Rollback' and 'migrate latest' functionality has been built into this command to ensure a clean slate is generated for testing.
+
+## 4 - Running the tests
+
+Once your environment is setup, you can access the `/spec/app.spec.js` file to visualise the tests that have been developed to test this api.
+
+To carry out automated testing, run the script:
+
+```bash
+# npm test (or `npm t` for short)
+```
+
+This will cycle through every test written for every endpoint.
+
+The purpose of each test is to ensure the methods that have been developed for each endpoint of this api have been rigourously tested for frailties.
+
+A dummy request is sent to the server to test its functionality and to ensure it returns the expected response as a result.
+
+Considerations such as:
+
+- GET requests to the server should return relevant data to the Client
+- POST requests to the server will insert a new item into the database
+- PATCH requests will update existing entries in the database
+- DELETE requests remove an item from the database in its entirety and all corresponding entities associated with the parent data.
+- INVALID endpoints or input data will throw an error message to the Client
+
+For example:
+
+GET `/api/topics` is a valid endpoint so the test ensures it returns an object in a format similar to the below to the Client:
+
+```javascript
+{
+  topics: [
+    { slug: "mitch", description: "The man, the Mitch, the legend" },
+    { slug: "cats", description: "Not dogs" },
+    { slug: "paper", description: "what books are made of" }
+  ];
+}
+```
+
+GET `/api/categories` is not a valid endpoint so the test ensures it returns an error message similar to the below
+
+```javascript
+{ status: 404, msg: 'Route not found' }
+```
+
+_A list of all the available endpoints can be found in the endpoints.json file_
+
+## 5 - Deployment
+
+This app was hosted on `Heroku` but there are various hosting platforms that can be utilised to run your code. They must, however, need to be able to handle database integration through Postgres for this particular api.
+
+### 1. Install Heroku CLI
+
+`On mac`
+
+```bash
+brew tap heroku/brew && brew install heroku
+```
+
+`On Linux`
+
+```bash
+sudo snap install --classic heroku
+```
+
+### 2. Create a Heroku app
+
+```bash
+- heroku login
+- heroku create <your-app-name>
+```
+
+This will add a new remote that you can push your code to which you can check by entering:
+
+```bash
+git remote -v
+```
+
+Push your code to Heroku once it shows up in your git remotes. Any subsequent changes can also be pushed up.
+
+```bash
+git push heroku master
+```
+
+### 3. Seed deployed database
+
+All heroku's custom settings have already configured in the repo so to populate the production database, run the following command built into the package.json:
+
+```bash
+npm run seed:prod
+```
+
+### 4. Debugging Heroku
+
+Any issues with deployment on Heroku can be debugged using
+
+```bash
+heroku logs --tail
+```

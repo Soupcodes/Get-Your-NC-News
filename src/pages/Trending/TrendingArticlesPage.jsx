@@ -47,34 +47,21 @@ class TrendingArticlesPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sort_by, order } = this.state;
+    const { sort_by, order, page } = this.state;
 
-    if (prevState.sort_by !== sort_by || prevState.order !== order) {
+    if (
+      prevState.sort_by !== sort_by ||
+      prevState.order !== order ||
+      prevState.page !== page
+    ) {
       this.fetchArticles();
-    }
-
-    const { page } = this.state;
-    if (prevState.page !== page) {
-      api
-        .getArticles({ p: page })
-        .then(articles => {
-          this.setState({ articles });
-        })
-        .catch(({ response }) =>
-          this.setState({
-            errStatus: response.status,
-            errMsg: response.data.msg,
-            isLoading: false
-          })
-        );
     }
   }
 
   fetchArticles = () => {
-    const { order, sort_by } = this.state;
-
+    const { order, sort_by, page } = this.state;
     api
-      .getArticles({ order, sort_by })
+      .getArticles({ order, sort_by, p: page })
       .then(articles => {
         this.setState({ articles, isLoading: false });
       })
@@ -97,7 +84,7 @@ class TrendingArticlesPage extends Component {
 
   browsePage = inc_page => {
     this.setState(currentState => {
-      return { page: currentState.page + inc_page };
+      return { page: currentState.page + inc_page, isLoading: true };
     });
   };
 }

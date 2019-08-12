@@ -34,7 +34,7 @@ class SingleArticlePage extends Component {
 
   fetchArticlesById = () => {
     const { article_id } = this.props;
-    api
+    return api
       .getArticleById(article_id)
       .then(article => this.setState({ article, isLoading: false }))
       .catch(({ response }) =>

@@ -47,7 +47,7 @@ class ArticlesHomepage extends Component {
 
   fetchArticles = () => {
     const { page } = this.state;
-    api
+    return api
       .getArticles({ p: page })
       .then(articles =>
         this.setState({
@@ -66,7 +66,7 @@ class ArticlesHomepage extends Component {
 
   browsePage = inc_page => {
     this.setState(currentState => {
-      return { page: currentState.page + inc_page };
+      return { page: currentState.page + inc_page, isLoading: true };
     });
   };
 }
