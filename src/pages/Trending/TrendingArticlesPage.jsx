@@ -16,11 +16,12 @@ class TrendingArticlesPage extends Component {
     isLoading: true,
     errStatus: null,
     errMsg: null,
-    page: 1
+    page: 1,
+    limit: false
   };
 
   render() {
-    const { articles, isLoading, page, errStatus, errMsg } = this.state;
+    const { articles, isLoading, page, errStatus, errMsg, limit } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -35,7 +36,11 @@ class TrendingArticlesPage extends Component {
           <ArticleList articles={articles} />
           <p>{page}</p>
           <div className={styles.pagination}>
-            <PageChanger page={page} browsePage={this.browsePage} />
+            <PageChanger
+              page={page}
+              browsePage={this.browsePage}
+              limit={limit}
+            />
           </div>
         </div>
       </>
@@ -63,7 +68,11 @@ class TrendingArticlesPage extends Component {
     api
       .getArticles({ order, sort_by, p: page })
       .then(articles => {
-        this.setState({ articles, isLoading: false });
+        this.setState(currentState => {
+          return articles.length < 10
+            ? { isLoading: false, limit: true, articles }
+            : { isLoading: false, limit: false, articles };
+        });
       })
       .catch(({ response }) =>
         this.setState({

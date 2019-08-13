@@ -53,12 +53,6 @@ class ArticlesByTopic extends Component {
       prevState.sort_by !== sort_by ||
       prevState.page !== page
     ) {
-      this.setState(
-        currentState => console.log(currentState.articles.length)
-        // currentState.articles.length < 10
-        //   ? { isLoading: true, limit: true }
-        //   : { isLoading: true, limit: false }
-      );
       this.fetchArticles();
     }
   }

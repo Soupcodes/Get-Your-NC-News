@@ -12,11 +12,12 @@ class ArticlesHomepage extends Component {
     isLoading: true,
     errStatus: null,
     errMsg: null,
-    page: 1
+    page: 1,
+    limit: false
   };
 
   render() {
-    const { isLoading, articles, errStatus, errMsg, page } = this.state;
+    const { isLoading, articles, errStatus, errMsg, page, limit } = this.state;
     if (isLoading) return <LoadingSpinner />;
     if (errStatus)
       return <DefaultErrorPage errStatus={errStatus} errMsg={errMsg} />;
@@ -27,7 +28,7 @@ class ArticlesHomepage extends Component {
         <ArticleList articles={articles} />
         <div className={styles.pagination}>
           <p>{page}</p>
-          <PageChanger page={page} browsePage={this.browsePage} />
+          <PageChanger page={page} browsePage={this.browsePage} limit={limit} />
         </div>
       </>
     );
@@ -50,9 +51,10 @@ class ArticlesHomepage extends Component {
     return api
       .getArticles({ p: page })
       .then(articles =>
-        this.setState({
-          articles,
-          isLoading: false
+        this.setState(currentState => {
+          return articles.length < 10
+            ? { isLoading: false, limit: true, articles }
+            : { isLoading: false, limit: false, articles };
         })
       )
       .catch(({ response }) =>
