@@ -20,10 +20,7 @@ export const getUser = async username => {
 
 export const getTopics = async query => {
   const { data } = await request.get("/topics");
-  const topics = data.topics.map(topic => {
-    return topic;
-  });
-  return topics;
+  return data.topics;
 };
 
 export const getCommentsByArticleId = async (id, query) => {

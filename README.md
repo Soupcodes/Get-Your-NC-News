@@ -4,13 +4,13 @@ Get Your NC News is a front end user webview built using the NC News backend api
 
 All relevant links are listed below:
 
-Back-end:  
-[GitHub repository](https://github.com/Soupcodes/Alan-NC-News)  
-[Hosted version](https://alansoup-nc-news.herokuapp.com)
-
 Front-end:  
-[GitHub repository](https://github.com/Soupcodes/Get-Your-NC-News)  
 [Hosted version](https://alan-nc-news.netlify.com/)
+[GitHub repository](https://github.com/Soupcodes/Get-Your-NC-News)
+
+Back-end:  
+[Hosted version](https://alansoup-nc-news.herokuapp.com)
+[GitHub repository](https://github.com/Soupcodes/Alan-NC-News)
 
 ## Getting Started
 
@@ -24,36 +24,6 @@ From your terminal, clone the repository to your desired folder
 # git clone https://github.com/Soupcodes/Get-Your-NC-News.git
 
 # cd Get-Your-NC-News
-```
-
-## 1a - Create your own repository
-
-From your terminal, clone the repository to your desired folder
-
-```bash
-# git clone https://github.com/Soupcodes/Alan-NC-News.git
-
-# cd Alan-NC-News
-```
-
-### 1a - Create your own repository
-
-On GitHub create your own repository but **DO NOT to initialise with a README or .gitignore as these already included.**
-
-Next, link your local copy to your newly created GitHub repo. Use the following terminal commands, making sure to check the git remotes with each step (`git remote -v`):
-
-```bash
-git remote remove origin
-
-# This prevents you from pushing to the original Get-Your-NC-News repo.
-```
-
-```bash
-git remote add origin <YOUR-GITHUB-URL>
-
-# This will add your GitHub location to your local git repository.
-
-# Confirm this by checking the new git remote.
 ```
 
 ## 2 - Setting up your environment and prerequisites
@@ -85,60 +55,7 @@ Minimum version are:
 
 With all dependencies installed, you can run `npm start` in the terminal to see a locally hosted version of the site.
 
-### 4 - Deploy a draft build URL
-
-To also test how the site will function in a live user setting, carry out the following steps in your terminal:
-
-```bash
-# npm run build
-```
-
-This script bundles your code into files readable by most modern browsers. **Don't change any files in the build folder**.
-
-```bash
-# netlify deploy
-```
-
-- You will need to authorise Netlify with GitHub and select create and configure a new site.
-- Input a site name (this is the URL users will see when the site is fully deployed)
-- Connect to your account
-- When asked for the deploy path, enter `./build` to point to the build directory in the repository.
-
-This will deploy a **draft version** to a url displayed in your terminal - `eg. https://5c13ab16055b9be1725868e6--your-site-name.netlify.com`, Ctrl + click the link to view and test how the site will function in a live setting.
-
-### 5 - Deploy to a production build URL
-
-Once you are happy with a draft test of the site, a production version can be deployed. Run the following commands:
-
-```bash
-# netlify deploy --prod
-```
-
-Specify `./build` as the path again to finish deployment.
-
-### 6 - Redeployment
-
-Should you make amends to the code and want to update live visuals, git push to your copy of the GitHub repository and run through steps 4 & 5 again with the following commands:
-
-```bash
-# npm run build
-```
-
-```bash
-# netlify deploy
-```
-
-```bash
-# netlify deploy --prod
-```
-
-You do not need to respecify the site name as reployment will overwrite information already attached to that URL, just ensure `./build` is entered when deploy path shows up in terminal for both draft and production deployments.
-
-### 7 - Debugging Netlify
-
-Any issues with deployment on Netlify can be debugged by Ctrl + clicking on the `Logs` url that appears in the terminal upon initial deployment.
-
-### 8 - Useful docs
+### 4 - Useful docs
 
 Should you run into any issues utilising pre-requisite dependencies, or deployment, the official documentation provides useful insight as a guideline as well as for troubleshooting purposes. See below.
 
